@@ -14,7 +14,7 @@ passport = require('passport'),
 
 port = 3000;
 
-app.use(express.static(__dirname + '/'));
+app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.urlencoded({extended:false}));
 
