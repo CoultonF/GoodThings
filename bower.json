@@ -1,0 +1,23 @@
+{
+  "name": "good-things",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Coultonf <cjrfraser@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/CoultonF/GoodThings",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "app-layout": "PolymerElements/app-layout#^0.10.7",
+    "iron-elements": "PolymerElements/iron-elements#^1.0.10",
+    "paper-elements": "PolymerElements/paper-elements#^1.0.7"
+  }
+}
