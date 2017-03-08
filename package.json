@@ -1,0 +1,28 @@
+{
+  "name": "good-things",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "bower": "^1.8.0",
+    "express": "^4.15.2",
+    "helmet": "^3.4.1",
+    "http": "0.0.0",
+    "passport": "^0.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoultonF/GoodThings.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CoultonF/GoodThings/issues"
+  },
+  "homepage": "https://github.com/CoultonF/GoodThings#readme"
+}
