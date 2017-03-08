@@ -16,10 +16,11 @@
     "tests"
   ],
   "dependencies": {
-    "polymer":"Polymer",
+    "polymer": "Polymer",
     "app-layout": "PolymerElements/app-layout#^0.10.7",
     "iron-elements": "PolymerElements/iron-elements#^1.0.10",
     "paper-elements": "PolymerElements/paper-elements#^1.0.7",
-    "app-route": "PolymerElements/app-route"
+    "app-route": "PolymerElements/app-route",
+    "google-map": "googlewebcomponents/google-map#^1.2.0"
   }
 }

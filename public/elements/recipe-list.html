@@ -17,15 +17,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
 <link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-layout/app-grid/app-grid-style.html">
 
 <dom-module id="recipe-list">
   <template>
 
-    <style>
+    <style include="app-grid-style">
     app-header {
       color: #fff;
-      background-color: #00AA8D;
+      background-color: #ff9163;
     }
+    /*00AA8D*/
+
+    :host {
+      --app-grid-columns: 1;
+      --app-grid-item-height: 100px;
+    }
+
     app-toolbar {
       height: 120px;
     }
@@ -35,7 +43,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       bottom: 0;
       left: 0;
       right: 0;
-      background-image: url('//app-layout-assets.appspot.com/assets/pesto/logo_m.png');
+      background-image: url('../images/logo-SM.png');
       background-repeat: no-repeat;
       background-position: center center;
       background-size: 90px;
@@ -48,7 +56,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       bottom: 0;
       left: 0;
       right: 0;
-      background-image: url('//app-layout-assets.appspot.com/assets/pesto/logo_l.png');
+      background-image: url('../images/logo.png');
       background-repeat: no-repeat;
       background-position: center center;
       background-size: 240px;
@@ -65,7 +73,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     .card-container {
       display: inline-block;
-      width: 33.33%;
+      width: 100%;
       color: black;
       text-decoration: none;
     }
@@ -96,7 +104,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         max-width: 800px;
       }
       .card-container {
-        width: 50%;
+        width: 100%;
       }
     }
     @media (max-width: 719px) {
@@ -104,12 +112,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         height: 60px;
       }
       [condensed-title] {
-        background-image: url('//app-layout-assets.appspot.com/assets/pesto/logo_s.png');
+        background-image: url('../images/logo-SM.png');
         background-size: 60px;
       }
       [main-title] {
         top: -60px;
-        background-image: url('//app-layout-assets.appspot.com/assets/pesto/logo_m.png');
+        background-image: url('../images/logo.png');
         background-size: 90px;
       }
       .content {
@@ -134,10 +142,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </app-toolbar>
       </app-header>
 
-      <div class="content">
+      <div class="content app-grid">
         <template is="dom-repeat" items="{{recipes}}"><!-- No empty text node
-        --><a href="#/detail/{{item.id}}" class="card-container">
-            <paper-card image="{{item.imageUrl}}">
+        --><a href="#/detail/{{item.id}}" class="item card-container">
+            <paper-card>
               <div class="card-content">
                 <h2>{{item.name}}</h2>
                 <p>By <span>{{item.author}}</span></p>
