@@ -22,7 +22,7 @@ app.use(helmet());
 
 app.get('/', function(req, res){
 
-    res.sendFile(__dirname + '/landing-page.html');
+    res.sendFile(__dirname + '/index.html');
 
 });
 
