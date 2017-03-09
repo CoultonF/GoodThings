@@ -1,0 +1,177 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="../bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+
+<link rel="import" href="../bower_components/chat-window/chat-window.html">
+
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/google-map/google-map.html">
+<link rel="import" href="../bower_components/google-map/google-map-marker.html">
+<link rel="import" href="../bower_components/google-map/google-map-poly.html">
+<link rel="import" href="../bower_components/google-map/google-map-directions.html">
+
+
+
+
+
+<dom-module id="message-app">
+    <template>
+    <style>
+    :host {
+        display: block;
+        background-attachment: fixed;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+    }
+    #header {
+        color: #ff9163;
+        background-color: #ff9163;
+        --app-header-background-rear-layer: {
+            background-color: #ff9163;
+        };
+    }
+    paper-icon-button {
+        color: white;
+        --paper-icon-button-ink-color: white;
+    }
+    .card-container {
+        position: relative;
+        width: 720px;
+        margin: 50px auto 40px;
+    }
+    paper-fab {
+        position: absolute;
+        top: -28px;
+        right: 40px;
+        --paper-fab-background: #EF5458;
+        --paper-fab-keyboard-focus-background: #DF4448;
+    }
+    paper-card {
+        padding: 16px 0 16px 10px;
+        width: 100%;
+        sizing: border-box;
+    }
+    paper-card p {
+        margin: 12px 0;
+        color: #999;
+    }
+    .apply-button{
+        color: white;
+        background-color: #ff9163;
+        --paper-button-ink-color: #fff;
+        --paper-button-color: #ff9163;
+        width: 100%;
+    }
+    h4 {
+        margin: 60px 0 12px;
+    }
+    .ingredient-item {
+        margin: 20px 0;
+        @apply(--layout-horizontal);
+    }
+    .ingredient-amount {
+        margin-left: -80px;
+        width: 60px;
+        padding-right: 20px;
+        color: rgb(33, 169, 143);
+        text-align: right;
+    }
+    .ingredient-name {
+        @apply(--layout-flex);
+    }
+    @media (max-width: 720px) {
+        .card-container {
+            width: 100%;
+            margin: 25px 0 0;
+        }
+    }
+    </style>
+
+    <!-- main panel -->
+    <app-header-layout>
+
+        <app-header id="header" effects="waterfall fade-background" reveals>
+
+            <!-- top toolbar -->
+            <app-toolbar>
+                <!-- back button -->
+                <a href="#/home" tabindex="-1">
+                    <paper-icon-button icon="app:arrow-back"></paper-icon-button>
+                </a>
+
+                <div main-title></div>
+
+                <paper-menu-button horizontal-align="right">
+                    <paper-icon-button icon="app:more-vert" class="dropdown-trigger" alt="menu"></paper-icon-button>
+                    <paper-listbox class="dropdown-content">
+                        <paper-icon-item>
+                            <iron-icon icon="app:share" item-icon></iron-icon>
+                            Share
+                        </paper-icon-item>
+                        <paper-icon-item>
+                            <iron-icon icon="app:email" item-icon></iron-icon>
+                            Send Email
+                        </paper-icon-item>
+                        <paper-icon-item>
+                            <iron-icon icon="app:textsms" item-icon></iron-icon>
+                            Start Chat
+                        </paper-icon-item>
+                        <paper-icon-item>
+                            <iron-icon icon="app:group" item-icon></iron-icon>
+                            Apply for Position
+                        </paper-icon-item>
+                    </paper-listbox>
+                </paper-menu-button>
+            </app-toolbar>
+
+        </app-header>
+    </app-header-layout>
+    <style is="custom-style">
+  chat-window.styled {
+      font-size: small;
+      --chat-messages-height: 12em;
+      --paper-input-container-input: {
+        margin: 0 2px;
+      }
+      --chat-message-text: {
+        background-color: #f0f0f0;
+        padding: 6px 8px;
+        margin: 4px 0;
+        border-radius: 6px;
+      };
+    }
+  }
+</style>
+
+<div class="card-container">
+    chat window here
+</div>
+
+</template>
+
+<script>
+Polymer({
+    is: 'message-app',
+    properties: {
+        recipes: Object,
+        _route: Object,
+        _subRoute: Object,
+        _pageData: Object,
+        _idData: Object
+    }
+});
+</script>
+
+</dom-module>

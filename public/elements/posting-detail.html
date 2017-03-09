@@ -1,0 +1,235 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="../bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/google-map/google-map.html">
+<link rel="import" href="../bower_components/google-map/google-map-marker.html">
+<link rel="import" href="../bower_components/google-map/google-map-poly.html">
+<link rel="import" href="../bower_components/google-map/google-map-directions.html">
+
+
+
+
+
+<dom-module id="posting-detail">
+
+    <template>
+
+    <style>
+    :host {
+        display: block;
+        background-attachment: fixed;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+    }
+    #header {
+        color: #ff9163;
+        background-color: #ff9163;
+        --app-header-background-rear-layer: {
+            background-color: #ff9163;
+        };
+    }
+    paper-icon-button {
+        color: white;
+        --paper-icon-button-ink-color: white;
+    }
+    .card-container {
+        position: relative;
+        width: 720px;
+        margin: 50px auto 40px;
+    }
+    paper-fab {
+        position: absolute;
+        top: -28px;
+        right: 40px;
+        --paper-fab-background: #EF5458;
+        --paper-fab-keyboard-focus-background: #DF4448;
+    }
+    paper-card {
+        padding: 16px 0 16px 10px;
+        width: 100%;
+        sizing: border-box;
+    }
+    paper-card p {
+        margin: 12px 0;
+        color: #999;
+    }
+    .apply-button{
+        color: white;
+        background-color: #ff9163;
+        --paper-button-ink-color: #fff;
+        --paper-button-color: #ff9163;
+        width: 100%;
+    }
+    h4 {
+        margin: 60px 0 12px;
+    }
+    .ingredient-item {
+        margin: 20px 0;
+        @apply(--layout-horizontal);
+    }
+    .ingredient-amount {
+        margin-left: -80px;
+        width: 60px;
+        padding-right: 20px;
+        color: rgb(33, 169, 143);
+        text-align: right;
+    }
+    .ingredient-name {
+        @apply(--layout-flex);
+    }
+    @media (max-width: 720px) {
+        .card-container {
+            width: 100%;
+            margin: 25px 0 0;
+        }
+    }
+    </style>
+
+    <!-- main panel -->
+    <app-header-layout>
+
+        <app-header id="header" effects="waterfall fade-background" reveals>
+
+            <!-- top toolbar -->
+            <app-toolbar>
+                <!-- back button -->
+                <a href="#/home" tabindex="-1">
+                    <paper-icon-button icon="app:arrow-back"></paper-icon-button>
+                </a>
+
+                <div main-title></div>
+
+                <paper-menu-button horizontal-align="right">
+                    <paper-icon-button icon="app:more-vert" class="dropdown-trigger" alt="menu"></paper-icon-button>
+                    <paper-listbox class="dropdown-content">
+                        <paper-icon-item>
+                            <iron-icon icon="app:share" item-icon></iron-icon>
+                            Share
+                        </paper-icon-item>
+                        <paper-icon-item>
+                            <iron-icon icon="app:email" item-icon></iron-icon>
+                            Send Email
+                        </paper-icon-item>
+                        <paper-icon-item>
+                            <iron-icon icon="app:textsms" item-icon></iron-icon>
+                            Start Chat
+                        </paper-icon-item>
+                        <paper-icon-item>
+                            <iron-icon icon="app:group" item-icon></iron-icon>
+                            Apply for Position
+                        </paper-icon-item>
+                    </paper-listbox>
+                </paper-menu-button>
+            </app-toolbar>
+
+        </app-header>
+
+        <div class="card-container">
+
+            <paper-card heading="{{recipe.name}}">
+                <div class="card-content">
+
+                    <h4>Description</h4>
+
+                    <p>{{recipe.description}}</p>
+
+                    <h4>Time Commitment</h4>
+
+                    <p>4 hours per week.</p>
+
+
+                    <!--
+
+                    HOW TO LOOP THROUGH POLYMER DATA
+
+                    <template is="dom-repeat" items="{{recipe.steps}}">
+                    <div class="ingredient-item">
+                    <div class="ingredient-amount">{{item.duration}}</div>
+                    <div class="ingredient-name">{{item.description}}</div>
+                </div>
+            </template> -->
+
+            <h4>Availability</h4>
+
+            <p>Monday & Tuesday</p>
+
+            <h4>Required Skills</h4>
+
+            <p>Lots</p>
+
+            <h4>Location</h4>
+
+            <style>
+            google-map {
+                height: 300px;
+
+            }
+            </style>
+            <!-- apiKEY   AIzaSyABA_OtpgdIvSaXQ1IwiojyXkSnD1bDrGo -->
+            <google-map latitude="37.77493" longitude="-122.41942" fit-to-markers>
+                <google-map-marker latitude="37.777" longitude="-122.38911"></google-map-marker>
+            </google-map>
+            <h4>Interested?</h4>
+            <paper-button class="apply-button">Apply for Posting</paper-button>
+        </div>
+    </paper-card>
+
+    <paper-fab icon="{{__computeFavIcon(__favorite)}}" on-tap="__toggleFavorite"></paper-fab>
+</div>
+
+</app-header-layout>
+
+</template>
+
+<script>
+Polymer({
+    is: 'posting-detail',
+    properties: {
+        recipe: {
+            type: Object,
+            observer: '__recipeChanged'
+        },
+        __favorite: {
+            type: Boolean,
+            value: false
+        }
+    },
+    __recipeChanged: function(recipe) {
+        if (recipe) {
+            //this.style.backgroundImage = 'url(' + recipe.imageUrl + ')';
+        }
+    },
+    __toggleFavorite: function(event, detail) {
+        this.__favorite = !this.__favorite;
+    },
+    __computeFavIcon: function(favorite) {
+        return favorite ? 'app:favorite' : 'app:favorite-border';
+    }
+});
+</script>
+
+</dom-module>

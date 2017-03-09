@@ -21,6 +21,9 @@
     "iron-elements": "PolymerElements/iron-elements#^1.0.10",
     "paper-elements": "PolymerElements/paper-elements#^1.0.7",
     "app-route": "PolymerElements/app-route",
-    "google-map": "googlewebcomponents/google-map#^1.2.0"
+    "google-map": "googlewebcomponents/google-map#^1.2.0",
+    "paper-dropdown-input": "^2.1.0",
+    "paper-search": "^1.2.1",
+    "chat-window": "^0.4.9"
   }
 }
