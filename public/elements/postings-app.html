@@ -33,6 +33,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="posting-detail.html">
 <link rel="import" href="posting-list.html">
 <link rel="import" href="app-icons.html">
+<link rel="import" href="sign-in.html">
+
 
 <dom-module id="postings-app">
 
@@ -85,7 +87,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     </style>
 
-    <app-location route="{{_route}}" use-hash-as-path></app-location>
+    <app-location route="{{_route}}"></app-location>
     <app-route
     route="{{_route}}"
     pattern="/:page"
@@ -140,6 +142,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <!-- list/detail pages -->
     <iron-pages selected="[[_pageData.page]]" attr-for-selected="name">
+
+        <sign-in name="" recipes="[[recipes]]">
+            <paper-icon-button icon="app:menu" drawer-toggle></paper-icon-button>
+        </sign-in>
 
         <posting-list name="home" recipes="[[recipes]]">
             <paper-icon-button icon="app:menu" drawer-toggle></paper-icon-button>

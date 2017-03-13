@@ -1,0 +1,373 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-fit-behavior/iron-fit-behavior.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../bower_components/iron-grid/iron-grid.html">
+
+
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+
+<link rel="import" href="../bower_components/gold-email-input/gold-email-input.html">
+<link rel="import" href="../bower_components/google-signin/google-signin.html">
+
+
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-grid/app-grid-style.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-scrollpos-control/app-scrollpos-control.html">
+
+<link rel="import" href="../bower_components/app-layout/demo/sample-content.html">
+
+<dom-module id="goodthings-main">
+
+    <template>
+    <style is="custom-style">
+    paper-icon-button.large {
+        width: 50px;
+        height: 50px;
+    }
+    </style>
+    <style include="app-grid-style">
+    app-drawer{
+        --app-drawer-content-container: {
+            background-color: rgba(0,0,0,0.85);
+            color: white;
+        }
+        --app-drawer-width: 450px;
+        --app-drawer-scrim-background: rgba(0, 0, 0, 0);
+    }
+    app-drawer *{
+        background-color: rgba(0,0,0,0);
+        color: white;
+    }
+    paper-icon-button.large #menu {
+        width: 50px;
+        height: 50px;
+    }
+    :host {
+        --app-grid-columns: 1;
+        --app-grid-gutter: 0px;
+        --app-grid-expandible-item-columns: 2;
+        --app-grid-item-height: 30vh;
+    }
+
+    app-drawer{
+        z-index: 100 !important;
+    }
+    hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #5f5f5f;
+        margin: .5em auto .5em 20px;
+        padding: 0;
+        width: 60%;
+
+    }
+    .headerDivider {
+        border-left:1px solid #38546d;
+        border-right:1px solid #16222c;
+        height:80px;
+    }
+    app-header {
+        color: #fff;
+        background-color: #ff9163;
+    }
+    .orange{
+        background-color: #ff9163;
+        color: white;
+    }
+    .action-button{
+
+        color: white;
+        background-color: #ff9163;
+        --paper-button-ink-color: #fff;
+        --paper-button-color: #ff9163;
+        min-width: 300px;
+        width: 30%;
+
+    }
+
+    [condensed-title] {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-image: url('../images/logo-SM.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 90px;
+        /* The difference in font size is used to calculate the scale of the title in the transition. */
+        font-size: 16px;
+    }
+    [main-title] {
+        position: absolute;
+        top: -120px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-image: url('../images/logo.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 240px;
+        -webkit-transform-origin: center top !important;
+        transform-origin: center top !important;
+        /* The difference in font size is used to calculate the scale of the title in the transition. */
+        font-size: 32px;
+    }
+    a {
+        text-decoration: none;
+        font-size: inherit;
+        color: inherit;
+    }
+    .toolbar {
+        @apply(--layout-horizontal);
+        @apply(--layout-end-justified);
+        background-color: rgba(255, 255, 255, 0.95);
+    }
+    app-toolbar {
+        height: 120px;
+    }
+    .tabs {
+        height: 100%;
+        @apply(--layout-horizontal);
+    }
+    .tabs > a {
+        @apply(--layout-vertical);
+        @apply(--layout-center-center);
+        margin: 12px 16px 12px;
+        border-bottom: 1px solid #222;
+    }
+    header {
+        @apply(--layout-vertical);
+        @apply(--layout-center-center);
+        height: calc(100vh - 64px);
+        padding: 0 16px;
+        background-image: url('../images/calgary-city.jpg');
+        backgrond-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        color: white;
+        text-align: center;
+    }
+    header > h2 {
+        font-size: 56px;
+        font-weight: 300;
+        margin: 0;
+    }
+    header > p {
+        font-size: 32px;
+    }
+    section {
+        padding: 88px 16px;
+    }
+    .container {
+        @apply(--layout-horizontal);
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .container > * {
+        @apply(--layout-flex);
+    }
+    .container img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+    .container h3 {
+        font-size: 32px;
+        font-weight: 300;
+        margin: 24px 0;
+    }
+    .container p {
+        line-height: 1.5;
+    }
+    .card-container {
+        position: relative;
+        width: 720px;
+        margin: 50px auto 40px;
+    }
+    @media (max-width: 600px) {
+        .container {
+            @apply(--layout-vertical);
+        }
+        :host {
+            --app-grid-columns: 1;
+            --app-grid-item-height: 200px;
+        }
+        .card-container {
+            width: 100%;
+            margin: 25px 0 0;
+        }
+        app-drawer{
+            --app-drawer-width: 256px;
+        }
+    }
+    @media (max-width: 719px) {
+        app-toolbar {
+            height: 60px;
+        }
+        :host {
+            --app-grid-columns: 1;
+            --app-grid-item-height: 200px;
+        }
+        [condensed-title] {
+            background-image: url('../images/logo-SM.png');
+            background-size: 60px;
+        }
+        [main-title] {
+            top: -60px;
+            background-image: url('../images/logo.png');
+            background-size: 90px;
+        }
+        .card-container {
+            width: 100%;
+            margin: 25px 0 0;
+        }
+        app-drawer{
+            --app-drawer-width: 256px;
+        }
+
+    }
+    </style>
+    <app-location route="{{_route}}"></app-location>
+    <app-route
+    route="{{_route}}"
+    pattern="/:page"
+    data="{{_pageData}}"
+    tail="{{_subRoute}}"></app-route>
+    <app-route
+    route="{{_subRoute}}"
+    pattern="/:id"
+    data="{{_idData}}"></app-route>
+    <app-drawer-layout responsive-width="2000px">
+        <app-drawer id="drawer" swipe-open align="right">
+            <paper-item onclick="drawer.close()"><iron-icon icon="close"></iron-icon><strong>CLOSE</strong></paper-item>
+            <br>
+            <paper-listbox
+            selected="{{_pageData.page}}"
+            attr-for-selected="name"
+            >
+
+            <paper-item name="signin" onclick="drawer.close()"><strong>SIGN IN</strong></paper-item>
+            <paper-item name="signup" onclick="drawer.close();"><strong>SIGN UP</strong></paper-item>
+            <hr>
+            <paper-item name="business" onclick="drawer.close()"><strong>GOOD THINGS BUSINESS</strong></paper-item>
+            <hr>
+            <paper-item name="" onclick="drawer.close()"><strong>ABOUT GOOD THINGS</strong></paper-item>
+        </paper-listbox>
+    </app-drawer>
+    <app-header-layout>
+        <app-scrollpos-control
+        selected="[[_pageData.page]]"
+        reset="[[_isDetailPage(_pageData.page)]]"></app-scrollpos-control>
+        <app-header effects="resize-title" condenses fixed shadow>
+
+            <app-toolbar class="top-toolbar">
+                <paper-icon-button class="large" icon="menu" style="position:absolute;top:20px;right:20px;" drawer-toggle horizontal end-justified layout></paper-icon-button>
+                <content select="[drawer-toggle]"></content>
+                <div condensed-title></div>
+            </app-toolbar>
+
+            <app-toolbar class="bottom-toolbar">
+                <div main-title></div>
+            </app-toolbar>
+
+        </app-header>
+        <iron-pages selected="[[_pageData.page]]" attr-for-selected="name">
+            <div name="">
+                <header>
+                    <h2>Good Things YYC</h2>
+                    <p>Connecting Volunteers with Organizations</p>
+                    <paper-button onclick="document.querySelector('iron-pages').select('signup')" name="signup" class="action-button">Register Now!</paper-button>
+                </header>
+
+                <section id="about">
+                    <div class="container">
+
+                        <h3>We Are</h3>
+                        <p>a branding tool where companies can leverage the good things they are doing to Calgary’s community of socially minded consumers. Companies that meet the GoodThings criteria can purchase a membership to use the branding letting consumers know they are purchasing from a social enterprise.</p>
+                    </div>
+                    <div class="container">
+                    </div>
+                </section>
+            </div>
+            <div name="signin">
+
+                <div class="card-container">
+                    <div class="app-grid" style="max-width:400px; margin:auto;">
+                        <form method="get" action="/home" id="basic">
+                            <gold-email-input auto-validate required name="email" label="Email"></gold-email-input>
+                            <paper-input name="password" label="Password" type="password" required auto-validate></paper-input>
+                            <br>
+                            <button class="orange" raised style="width:100%;color:white;height:50px;font-size:20px;"><strong>SIGN IN</strong></button>
+                        </form>
+                        <google-signin brand="google" client-id="773152283935-fopoi5tcqplflhu942p6eqhogfj6thhg.apps.googleusercontent.com" width="wide" ></google-signin>
+                        <div class="">
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div name="signup">
+
+                <div class="card-container">
+                    <div class="app-grid" style="max-width:400px; margin:auto;">
+                        TODO: Sign Up Form
+                    </div>
+
+                </div>
+
+            </div>
+            <div name="business">
+
+                <div class="card-container">
+                    <div class="app-grid" style="max-width:400px; margin:auto;">
+                        TODO: Business Sign Up Form
+                    </div>
+
+                </div>
+
+            </div>
+
+        </iron-pages>
+
+    </app-header-layout>
+</app-drawer-layout>
+</template>
+
+<script>
+Polymer({
+    is: 'goodthings-main'
+});
+</script>
+</dom-module>

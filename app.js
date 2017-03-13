@@ -12,7 +12,9 @@ helmet = require('helmet'),
 
 passport = require('passport'),
 
-port = 3000;
+port = 3000,
+
+homeRouter = express.Router();
 
 app.use(express.static(__dirname + '/public'));
 
@@ -20,11 +22,27 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 app.use(helmet());
 
-app.get('/', function(req, res){
+homeRouter.route('/').get(function(req, res){
 
     res.sendFile(__dirname + '/index.html');
 
 });
+
+app.get('/', function(req, res){
+
+//TODO: authenticate token if not valid or null
+
+    if(false)
+
+        res.sendFile(__dirname + '/index.html');
+
+    else
+        //TODO: create sign in page
+        res.sendFile(__dirname + '/sign-in-page.html');
+
+});
+
+app.use('/home', homeRouter);
 
 app.listen(port, function(err){
 
