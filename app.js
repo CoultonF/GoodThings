@@ -16,6 +16,14 @@ port = 3000,
 
 homeRouter = express.Router();
 
+signinRouter = express.Router();
+
+signupRouter = express.Router();
+
+landingPageRouter = express.Router();
+
+businessInfoRouter = express.Router();
+
 app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.urlencoded({extended:false}));
@@ -25,6 +33,30 @@ app.use(helmet());
 homeRouter.route('/').get(function(req, res){
 
     res.sendFile(__dirname + '/index.html');
+
+});
+
+signinRouter.route('/').get(function(req, res){
+
+    res.sendFile(__dirname + '/sign-in-page.html');
+
+});
+
+signupRouter.route('/').get(function(req, res){
+
+    res.sendFile(__dirname + '/sign-in-page.html');
+
+});
+
+landingPageRouter.route('/').get(function(req, res){
+
+    res.sendFile(__dirname + '/sign-in-page.html');
+
+});
+
+businessInfoRouter.route('/').get( function(req, res){
+
+    res.sendFile(__dirname + '/sign-in-page.html');
 
 });
 
@@ -43,6 +75,14 @@ app.get('/', function(req, res){
 });
 
 app.use('/home', homeRouter);
+
+app.use('/signin', signinRouter);
+
+app.use('/', landingPageRouter);
+
+app.use('/signup', signupRouter);
+
+app.use('/business', businessInfoRouter);
 
 app.listen(port, function(err){
 

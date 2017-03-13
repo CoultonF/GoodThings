@@ -32,6 +32,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/gold-email-input/gold-email-input.html">
 <link rel="import" href="../bower_components/google-signin/google-signin.html">
+<link rel="import" href="../bower_components/linkedin-signin/linkedin-signin.html">
 
 
 <link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
@@ -329,8 +330,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <br>
                             <button class="orange" raised style="width:100%;color:white;height:50px;font-size:20px;"><strong>SIGN IN</strong></button>
                         </form>
-                        <google-signin brand="google" client-id="773152283935-fopoi5tcqplflhu942p6eqhogfj6thhg.apps.googleusercontent.com" width="wide" ></google-signin>
+                        <google-signin brand="google" theme="dark" client-id="773152283935-fopoi5tcqplflhu942p6eqhogfj6thhg.apps.googleusercontent.com" width="wide" ></google-signin>
+                        <linkedin-signin client-id="86tk8aymufkkgz"></linkedin-signin>
                         <div class="">
+
 
                         </div>
                     </div>
@@ -369,5 +372,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 Polymer({
     is: 'goodthings-main'
 });
+var scope = document.querySelector('template[is=dom-bind]');
+scope.key = '86tk8aymufkkgz';
+scope.initialized = false;
+scope.fields = 'id,num-connections,picture-url';
+scope.lang = 'en_US';
+scope.init = function() {
+    scope.initialized = true;
+};
+scope.onCustomSignin = function() {
+    var signin = document.querySelector('#signin');
+    signin.signIn();
+};
+scope.stringify = function(obj) {
+    return JSON.stringify(obj);
+};
 </script>
 </dom-module>
