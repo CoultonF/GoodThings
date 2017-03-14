@@ -33,7 +33,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/gold-email-input/gold-email-input.html">
 <link rel="import" href="../bower_components/google-signin/google-signin.html">
 <link rel="import" href="../bower_components/linkedin-signin/linkedin-signin.html">
-
+<link rel="import" href="../bower_components/paper-password-input/paper-password-input.html">
 
 <link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
@@ -56,6 +56,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     </style>
     <style include="app-grid-style">
+
     app-drawer{
         --app-drawer-content-container: {
             background-color: rgba(0,0,0,0.85);
@@ -74,9 +75,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     :host {
         --app-grid-columns: 1;
-        --app-grid-gutter: 0px;
-        --app-grid-expandible-item-columns: 2;
-        --app-grid-item-height: 30vh;
+
     }
 
     app-drawer{
@@ -211,9 +210,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         line-height: 1.5;
     }
     .card-container {
-        position: relative;
         width: 720px;
-        margin: 50px auto 40px;
+        margin: 50px auto auto auto;
     }
     @media (max-width: 600px) {
         .container {
@@ -221,7 +219,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         :host {
             --app-grid-columns: 1;
-            --app-grid-item-height: 200px;
         }
         .card-container {
             width: 100%;
@@ -237,7 +234,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         :host {
             --app-grid-columns: 1;
-            --app-grid-item-height: 200px;
         }
         [condensed-title] {
             background-image: url('../images/logo-SM.png');
@@ -274,8 +270,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <br>
             <paper-listbox
             selected="{{_pageData.page}}"
-            attr-for-selected="name"
-            >
+            attr-for-selected="name">
 
             <paper-item name="signin" onclick="drawer.close()"><strong>SIGN IN</strong></paper-item>
             <paper-item name="signup" onclick="drawer.close();"><strong>SIGN UP</strong></paper-item>
@@ -323,19 +318,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div name="signin">
 
                 <div class="card-container">
-                    <div class="app-grid" style="max-width:400px; margin:auto;">
+                    <div class="app-grid" style="max-width:400px; margin: 10px auto;">
                         <form method="get" action="/home" id="basic">
                             <gold-email-input auto-validate required name="email" label="Email"></gold-email-input>
                             <paper-input name="password" label="Password" type="password" required auto-validate></paper-input>
                             <br>
                             <button class="orange" raised style="width:100%;color:white;height:50px;font-size:20px;"><strong>SIGN IN</strong></button>
                         </form>
+                    </div>
+                    <br>
+                    <div class="app-grid" style="max-width:400px; margin:10px auto;">
                         <google-signin brand="google" theme="dark" client-id="773152283935-fopoi5tcqplflhu942p6eqhogfj6thhg.apps.googleusercontent.com" width="wide" ></google-signin>
-                        <linkedin-signin client-id="86tk8aymufkkgz"></linkedin-signin>
-                        <div class="">
-
-
-                        </div>
                     </div>
 
                 </div>
@@ -344,8 +337,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div name="signup">
 
                 <div class="card-container">
-                    <div class="app-grid" style="max-width:400px; margin:auto;">
-                        TODO: Sign Up Form
+                    <div class="app-grid two-col" style="max-width:800px; margin: auto;">
+                        <div class="container">
+
+                            <h3>We Are</h3>
+                            <p>a branding tool where companies can leverage the good things they are doing to Calgary’s community of socially minded consumers. Companies that meet the GoodThings criteria can purchase a membership to use the branding letting consumers know they are purchasing from a social enterprise.</p>
+                        </div>
+                    </div>
+                    <div class="app-grid" style="max-width:400px; margin:auto auto 100px auto;">
+                        <form method="get" action="/home" id="basic">
+                            <gold-email-input auto-validate required name="email" label="Email"></gold-email-input>
+                            <paper-input name="firstName" label="First Name" type="text" required auto-validate></paper-input>
+                            <paper-input name="lastName" label="Last Name" type="text" required auto-validate></paper-input>
+                            <paper-password-input name="password" label="Password"></paper-password-input>
+                            <br>
+                            <button class="orange" raised style="width:100%;color:white;height:50px;font-size:20px;"><strong>REGISTER</strong></button>
+                        </form>
                     </div>
 
                 </div>
@@ -355,7 +362,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                 <div class="card-container">
                     <div class="app-grid" style="max-width:400px; margin:auto;">
-                        TODO: Business Sign Up Form
+                        <div><button href="/createBusiness" class="orange" raised style="width:100%;color:white;height:50px;font-size:20px;"><strong>CREATE A BUSINESS</strong></button></div>
                     </div>
 
                 </div>

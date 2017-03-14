@@ -2,6 +2,12 @@ var express = require('express'),
 
 bodyParser = require('body-parser'),
 
+mongodb = require('mongodb'),
+
+MongoClient = mongodb.MongoClient,
+
+url = 'mongodb://localhost:27017/good_things',
+
 fs = require('fs'),
 
 http = require('http'),
@@ -29,6 +35,22 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended:false}));
 
 app.use(helmet());
+
+
+//MongoClient
+MongoClient.connect(url, function(err, db){
+
+    if(err){
+        console.log(err);
+    }
+    else{
+        console.log('connection made at ' + url);
+        db.close();
+    }
+
+});
+
+
 
 homeRouter.route('/').get(function(req, res){
 
