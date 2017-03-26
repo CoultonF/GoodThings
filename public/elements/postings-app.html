@@ -105,9 +105,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <app-header-layout has-scrolling-region>
 
                 <app-header fixed>
-                    <div class="avatar-container">
-                        <div class="image"></div>
-                    </div>
+
+                        <div name="profile" class="avatar-container">
+                            <a href="/profile"><div class="image"></div></a>
+                        </div>
+
                     <div class="contact-info">
                         <div class="name">Coulton</div>
                         <div class="email">cfras104@mtroyal.ca</div>
@@ -162,6 +164,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <posting-list name="trending">
             <paper-icon-button icon="app:menu" drawer-toggle></paper-icon-button>
         </posting-list>
+
+        <profile-detail name="profile"></profile-detail>
 
         <posting-detail
         id="detailView"

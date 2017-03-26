@@ -1,26 +1,38 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-fit-behavior/iron-fit-behavior.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../bower_components/iron-grid/iron-grid.html">
 
-<link rel="import" href="../bower_components/paper-card/paper-card.html">
-<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
-<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
-<link rel="import" href="../bower_components/paper-menu-button/paper-menu-button.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
 
-<link rel="import" href="../bower_components/chat-window/chat-window.html">
+<link rel="import" href="../bower_components/gold-email-input/gold-email-input.html">
+<link rel="import" href="../bower_components/google-signin/google-signin.html">
+<link rel="import" href="../bower_components/paper-password-input/paper-password-input.html">
 
-<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
-<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="../bower_components/google-map/google-map.html">
-<link rel="import" href="../bower_components/google-map/google-map-marker.html">
-<link rel="import" href="../bower_components/google-map/google-map-poly.html">
-<link rel="import" href="../bower_components/google-map/google-map-directions.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-grid/app-grid-style.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-scrollpos-control/app-scrollpos-control.html">
+<link rel="import" href="../bower_components/app-layout/app-layout.html">
 
 
 
@@ -28,136 +40,229 @@
 
 <dom-module id="sign-in">
     <template>
-    <style>
-    :host {
-        display: block;
-        background-attachment: fixed;
-        background-size: 100% auto;
-        background-repeat: no-repeat;
+    <style include="app-grid-style">
+
+    app-drawer{
+        --app-drawer-content-container: {
+            background-color: rgba(0,0,0,0.85);
+            color: white;
+        }
+        --app-drawer-width: 450px;
+        --app-drawer-scrim-background: rgba(0, 0, 0, 0);
     }
-    #header {
-        color: #ff9163;
-        background-color: #ff9163;
-        --app-header-background-rear-layer: {
-            background-color: #ff9163;
-        };
-    }
-    paper-icon-button {
+    app-drawer *{
+        background-color: rgba(0,0,0,0);
         color: white;
-        --paper-icon-button-ink-color: white;
     }
-    .card-container {
-        position: relative;
-        width: 720px;
-        margin: 50px auto 40px;
+    paper-icon-button.large #menu {
+        width: 50px;
+        height: 50px;
     }
-    paper-fab {
-        position: absolute;
-        top: -28px;
-        right: 40px;
-        --paper-fab-background: #EF5458;
-        --paper-fab-keyboard-focus-background: #DF4448;
+    :host {
+        --app-grid-columns: 1;
     }
-    paper-card {
-        padding: 16px 0 16px 10px;
-        width: 100%;
-        sizing: border-box;
+
+    .item {
+        background-color: white;
     }
-    paper-card p {
-        margin: 12px 0;
-        color: #999;
+
+
+    app-drawer{
+        z-index: 100 !important;
     }
-    .apply-button{
+    hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #5f5f5f;
+        margin: .5em auto .5em 20px;
+        padding: 0;
+        width: 60%;
+
+    }
+    .headerDivider {
+        border-left:1px solid #38546d;
+        border-right:1px solid #16222c;
+        height:80px;
+    }
+    app-header {
+        color: #fff;
+        background-color: #ff9163;
+    }
+    .orange{
+        background-color: #ff9163;
+        color: white;
+    }
+    .action-button{
+
         color: white;
         background-color: #ff9163;
         --paper-button-ink-color: #fff;
         --paper-button-color: #ff9163;
-        width: 100%;
+        min-width: 300px;
+        width: 30%;
+
     }
-    h4 {
-        margin: 60px 0 12px;
+
+    [condensed-title] {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-image: url('../images/logo-SM.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 90px;
+        /* The difference in font size is used to calculate the scale of the title in the transition. */
+        font-size: 16px;
     }
-    .ingredient-item {
-        margin: 20px 0;
+    [main-title] {
+        position: absolute;
+        top: -120px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-image: url('../images/logo.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 240px;
+        -webkit-transform-origin: center top !important;
+        transform-origin: center top !important;
+        /* The difference in font size is used to calculate the scale of the title in the transition. */
+        font-size: 32px;
+    }
+    a {
+        text-decoration: none;
+        font-size: inherit;
+        color: inherit;
+    }
+    .toolbar {
+        @apply(--layout-horizontal);
+        @apply(--layout-end-justified);
+        background-color: rgba(255, 255, 255, 0.95);
+    }
+    app-toolbar {
+        height: 120px;
+    }
+    .tabs {
+        height: 100%;
         @apply(--layout-horizontal);
     }
-    .ingredient-amount {
-        margin-left: -80px;
-        width: 60px;
-        padding-right: 20px;
-        color: rgb(33, 169, 143);
-        text-align: right;
+    .tabs > a {
+        @apply(--layout-vertical);
+        @apply(--layout-center-center);
+        margin: 12px 16px 12px;
+        border-bottom: 1px solid #222;
     }
-    .ingredient-name {
+    header {
+        @apply(--layout-vertical);
+        @apply(--layout-center-center);
+        height: calc(100vh - 64px);
+        padding: 0 16px;
+        background-image: url('../images/calgary-city.jpg');
+        backgrond-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        color: white;
+        text-align: center;
+    }
+    h3 {
+        border-top: 1px solid #CCC;
+        border-bottom: 1px solid #CCC;
+        font-size: 13px;
+        padding: 8px;
+        text-align: center;
+        margin: 24px 0;
+    }
+    header > h2 {
+        font-size: 56px;
+        font-weight: 300;
+        margin: 0;
+    }
+    header > p {
+        font-size: 32px;
+    }
+    section {
+        padding: 16px 16px;
+    }
+    .container {
+        @apply(--layout-horizontal);
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .container > * {
         @apply(--layout-flex);
     }
-    @media (max-width: 720px) {
+    .container img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+    .container h3 {
+        font-size: 32px;
+        font-weight: 300;
+        margin: 24px 0;
+    }
+    .container p {
+        line-height: 1.5;
+    }
+    .card-container {
+        width: 720px;
+        margin: 50px auto auto auto;
+    }
+    @media (max-width: 600px) {
+        .container {
+            @apply(--layout-vertical);
+        }
         .card-container {
             width: 100%;
             margin: 25px 0 0;
         }
+        app-drawer{
+            --app-drawer-width: 256px;
+        }
+    }
+    @media (max-width: 719px) {
+        app-toolbar {
+            height: 60px;
+        }
+        [condensed-title] {
+            background-image: url('../images/logo-SM.png');
+            background-size: 60px;
+        }
+        [main-title] {
+            top: -60px;
+            background-image: url('../images/logo.png');
+            background-size: 90px;
+        }
+        .card-container {
+            width: 100%;
+            margin: 25px 0 0;
+        }
+        app-drawer{
+            --app-drawer-width: 256px;
+        }
+
     }
     </style>
 
-    <!-- main panel -->
-    <app-header-layout>
 
-        <app-header id="header" effects="waterfall fade-background" reveals>
+        <div class="card-container">
+            <div class="" style="max-width:400px; margin: 10px auto;">
+                <form method="get" action="/home" id="basic">
+                    <gold-email-input auto-validate required name="email" label="Email"></gold-email-input>
+                    <paper-input name="password" label="Password" type="password" required auto-validate></paper-input>
+                    <br>
+                    <button class="orange" raised style="width:100%;color:white;height:50px;font-size:20px;"><strong>SIGN IN</strong></button>
+                </form>
+            </div>
+            <br>
+            <div class="" style="max-width:400px; margin:10px auto;">
+                <google-signin brand="google" theme="dark" client-id="773152283935-fopoi5tcqplflhu942p6eqhogfj6thhg.apps.googleusercontent.com" width="wide" ></google-signin>
+            </div>
 
-            <!-- top toolbar -->
-            <app-toolbar>
-                <!-- back button -->
-                <a href="#/home" tabindex="-1">
-                    <paper-icon-button icon="app:arrow-back"></paper-icon-button>
-                </a>
+        </div>
 
-                <div main-title></div>
-
-                <paper-menu-button horizontal-align="right">
-                    <paper-icon-button icon="app:more-vert" class="dropdown-trigger" alt="menu"></paper-icon-button>
-                    <paper-listbox class="dropdown-content">
-                        <paper-icon-item>
-                            <iron-icon icon="app:share" item-icon></iron-icon>
-                            Share
-                        </paper-icon-item>
-                        <paper-icon-item>
-                            <iron-icon icon="app:email" item-icon></iron-icon>
-                            Send Email
-                        </paper-icon-item>
-                        <paper-icon-item>
-                            <iron-icon icon="app:textsms" item-icon></iron-icon>
-                            Start Chat
-                        </paper-icon-item>
-                        <paper-icon-item>
-                            <iron-icon icon="app:group" item-icon></iron-icon>
-                            Apply for Position
-                        </paper-icon-item>
-                    </paper-listbox>
-                </paper-menu-button>
-            </app-toolbar>
-
-        </app-header>
-    </app-header-layout>
-    <style is="custom-style">
-  chat-window.styled {
-      font-size: small;
-      --chat-messages-height: 12em;
-      --paper-input-container-input: {
-        margin: 0 2px;
-      }
-      --chat-message-text: {
-        background-color: #f0f0f0;
-        padding: 6px 8px;
-        margin: 4px 0;
-        border-radius: 6px;
-      };
-    }
-  }
-</style>
-
-<div class="card-container">
-    sign in window here
-</div>
 
 </template>
 

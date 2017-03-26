@@ -1,0 +1,114 @@
+<script src="../bower_components/webcomponentsjs/web-components-lite.js"></script>
+
+
+<link rel="import" href="../bower_components/paper-stepper/paper-step.html">
+<link rel="import" href="../bower_components/paper-stepper/paper-stepper.html">
+
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-fit-behavior/iron-fit-behavior.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../bower_components/iron-grid/iron-grid.html">
+
+
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+
+<link rel="import" href="../bower_components/gold-email-input/gold-email-input.html">
+<link rel="import" href="../bower_components/google-signin/google-signin.html">
+<link rel="import" href="../bower_components/paper-password-input/paper-password-input.html">
+
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-grid/app-grid-style.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-scrollpos-control/app-scrollpos-control.html">
+<link rel="import" href="../bower_components/app-layout/app-layout.html">
+
+<link rel="import" href="../bower_components/simple-modal/simple-modal.html">
+
+
+<style media="screen">
+    h4{
+        text-align: center;
+    }
+</style>
+
+<dom-module id="goodthings-stepper">
+
+<template>
+
+    <paper-stepper linear selected="0">
+      <paper-step label="Step 1" editable>
+          <h4>Find Out What Charity Best Suits You</h4>
+          <ul class="app-grid">
+              <li class="item" style="padding:10px;">
+                  <paper-card image="http://placehold.it/400x150/e86850/000000">
+                      <div class="card-content">
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quod laborum, porro. Aliquid ullam unde vero doloribus magnam dolorem reprehenderit, possimus asperiores reiciendis sint culpa mollitia obcaecati et neque modi!
+                      </div>
+                      <div class="card-actions">
+                          <paper-button>View Posting</paper-button>
+                      </div>
+                  </paper-card>
+              </li>
+              <li class="item" style="padding:10px;"><paper-card image="http://placehold.it/400x150/e86850/000000">
+                  <div class="card-content">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quod laborum, porro. Aliquid ullam unde vero doloribus magnam dolorem reprehenderit, possimus asperiores reiciendis sint culpa mollitia obcaecati et neque modi!
+                  </div>
+                  <div class="card-actions">
+                      <paper-button>View Posting</paper-button>
+                  </div>
+              </paper-card></li>
+              <li class="item" style="padding:10px;"><paper-card image="http://placehold.it/400x150/e86850/000000">
+                  <div class="card-content">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quod laborum, porro. Aliquid ullam unde vero doloribus magnam dolorem reprehenderit, possimus asperiores reiciendis sint culpa mollitia obcaecati et neque modi!
+                  </div>
+                  <div class="card-actions">
+                      <paper-button>View Posting</paper-button>
+                  </div>
+              </paper-card></li>
+              <li class="item" style="padding:10px;"><paper-card image="http://placehold.it/400x150/e86850/000000">
+                  <div class="card-content">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quod laborum, porro. Aliquid ullam unde vero doloribus magnam dolorem reprehenderit, possimus asperiores reiciendis sint culpa mollitia obcaecati et neque modi!
+                  </div>
+                  <div class="card-actions">
+                      <paper-button>View Posting</paper-button>
+                  </div>
+              </paper-card></li>
+          </ul>
+      </paper-step>
+      <paper-step label="step 2" editable></paper-step>
+      <paper-step label="step 3" editable></paper-step>
+      <paper-step label="step 4" editable></paper-step>
+    </paper-stepper>
+
+
+
+
+</template>
+
+<script>
+Polymer({
+    is: 'goodthings-stepper',
+});
+</script>
+
+</dom-module>

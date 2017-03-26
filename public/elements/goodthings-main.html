@@ -8,6 +8,10 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
+<link rel="import" href="sign-in.html">
+<link rel="import" href="sign-up.html">
+<link rel="import" href="goodthings-stepper.html">
+
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
 <link rel="import" href="../bower_components/app-route/app-location.html">
@@ -32,7 +36,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/gold-email-input/gold-email-input.html">
 <link rel="import" href="../bower_components/google-signin/google-signin.html">
-<link rel="import" href="../bower_components/linkedin-signin/linkedin-signin.html">
 <link rel="import" href="../bower_components/paper-password-input/paper-password-input.html">
 
 <link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
@@ -43,8 +46,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/app-layout/app-grid/app-grid-style.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-scrollpos-control/app-scrollpos-control.html">
-
-<link rel="import" href="../bower_components/app-layout/demo/sample-content.html">
+<link rel="import" href="../bower_components/app-layout/app-layout.html">
 
 <dom-module id="goodthings-main">
 
@@ -74,8 +76,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         height: 50px;
     }
     :host {
-        --app-grid-columns: 1;
+        --app-grid-columns: 4;
+    }
 
+    ul {
+        padding: 0;
+        list-style: none;
+    }
+
+    .item {
+        background-color: white;
+    }
+
+    @media (max-width: 1000px) {
+        :host {
+            --app-grid-columns: 2;
+        }
     }
 
     app-drawer{
@@ -178,6 +194,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: white;
         text-align: center;
     }
+    h3 {
+        text-align: center;
+        border-top: 1px solid #CCC;
+        border-bottom: 1px solid #CCC;
+        font-size: 3rem;
+        padding: 8px;
+        text-align: center;
+        margin: 24px auto;
+        max-width: 1000px;
+    }
     header > h2 {
         font-size: 56px;
         font-weight: 300;
@@ -187,7 +213,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-size: 32px;
     }
     section {
-        padding: 88px 16px;
+        padding: 16px 16px;
     }
     .container {
         @apply(--layout-horizontal);
@@ -304,60 +330,54 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <p>Connecting Volunteers with Organizations</p>
                     <paper-button onclick="document.querySelector('iron-pages').select('signup')" name="signup" class="action-button">Register Now!</paper-button>
                 </header>
-
+                <section id="postings">
+                    <h3>Discover</h3>
+                    <ul class="app-grid">
+                        <li class="item" style="padding:10px;">
+                            <paper-card image="http://placehold.it/400x150/e86850/000000">
+                                <div class="card-content">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quod laborum, porro. Aliquid ullam unde vero doloribus magnam dolorem reprehenderit, possimus asperiores reiciendis sint culpa mollitia obcaecati et neque modi!
+                                </div>
+                                <div class="card-actions">
+                                    <paper-button>View Posting</paper-button>
+                                </div>
+                            </paper-card>
+                        </li>
+                        <li class="item" style="padding:10px;"><paper-card image="http://placehold.it/400x150/e86850/000000">
+                            <div class="card-content">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quod laborum, porro. Aliquid ullam unde vero doloribus magnam dolorem reprehenderit, possimus asperiores reiciendis sint culpa mollitia obcaecati et neque modi!
+                            </div>
+                            <div class="card-actions">
+                                <paper-button>View Posting</paper-button>
+                            </div>
+                        </paper-card></li>
+                        <li class="item" style="padding:10px;"><paper-card image="http://placehold.it/400x150/e86850/000000">
+                            <div class="card-content">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quod laborum, porro. Aliquid ullam unde vero doloribus magnam dolorem reprehenderit, possimus asperiores reiciendis sint culpa mollitia obcaecati et neque modi!
+                            </div>
+                            <div class="card-actions">
+                                <paper-button>View Posting</paper-button>
+                            </div>
+                        </paper-card></li>
+                        <li class="item" style="padding:10px;"><paper-card image="http://placehold.it/400x150/e86850/000000">
+                            <div class="card-content">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quod laborum, porro. Aliquid ullam unde vero doloribus magnam dolorem reprehenderit, possimus asperiores reiciendis sint culpa mollitia obcaecati et neque modi!
+                            </div>
+                            <div class="card-actions">
+                                <paper-button>View Posting</paper-button>
+                            </div>
+                        </paper-card></li>
+                    </ul>
+                </section>
                 <section id="about">
+                    <h3>Get Started</h3>
                     <div class="container">
-
-                        <h3>We Are</h3>
-                        <p>a branding tool where companies can leverage the good things they are doing to Calgary’s community of socially minded consumers. Companies that meet the GoodThings criteria can purchase a membership to use the branding letting consumers know they are purchasing from a social enterprise.</p>
-                    </div>
-                    <div class="container">
+                        <goodthings-stepper></goodthings-stepper>
                     </div>
                 </section>
             </div>
-            <div name="signin">
-
-                <div class="card-container">
-                    <div class="app-grid" style="max-width:400px; margin: 10px auto;">
-                        <form method="get" action="/home" id="basic">
-                            <gold-email-input auto-validate required name="email" label="Email"></gold-email-input>
-                            <paper-input name="password" label="Password" type="password" required auto-validate></paper-input>
-                            <br>
-                            <button class="orange" raised style="width:100%;color:white;height:50px;font-size:20px;"><strong>SIGN IN</strong></button>
-                        </form>
-                    </div>
-                    <br>
-                    <div class="app-grid" style="max-width:400px; margin:10px auto;">
-                        <google-signin brand="google" theme="dark" client-id="773152283935-fopoi5tcqplflhu942p6eqhogfj6thhg.apps.googleusercontent.com" width="wide" ></google-signin>
-                    </div>
-
-                </div>
-
-            </div>
-            <div name="signup">
-
-                <div class="card-container">
-                    <div class="app-grid two-col" style="max-width:800px; margin: auto;">
-                        <div class="container">
-
-                            <h3>We Are</h3>
-                            <p>a branding tool where companies can leverage the good things they are doing to Calgary’s community of socially minded consumers. Companies that meet the GoodThings criteria can purchase a membership to use the branding letting consumers know they are purchasing from a social enterprise.</p>
-                        </div>
-                    </div>
-                    <div class="app-grid" style="max-width:400px; margin:auto auto 100px auto;">
-                        <form method="get" action="/home" id="basic">
-                            <gold-email-input auto-validate required name="email" label="Email"></gold-email-input>
-                            <paper-input name="firstName" label="First Name" type="text" required auto-validate></paper-input>
-                            <paper-input name="lastName" label="Last Name" type="text" required auto-validate></paper-input>
-                            <paper-password-input name="password" label="Password"></paper-password-input>
-                            <br>
-                            <button class="orange" raised style="width:100%;color:white;height:50px;font-size:20px;"><strong>REGISTER</strong></button>
-                        </form>
-                    </div>
-
-                </div>
-
-            </div>
+            <sign-in name="signin"></sign-in>
+            <sign-up name="signup"></sign-up>
             <div name="business">
 
                 <div class="card-container">

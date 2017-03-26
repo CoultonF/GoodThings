@@ -1,0 +1,14 @@
+{
+  "name": "mdl-stepper",
+  "homepage": "https://github.com/ahlechandre/mdl-stepper",
+  "version": "1.1.6",
+  "_release": "1.1.6",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.1.6",
+    "commit": "ad7172b9dc6924f37127a47777ae767c1b98da41"
+  },
+  "_source": "https://github.com/ahlechandre/mdl-stepper.git",
+  "_target": "^1.1.6",
+  "_originalSource": "mdl-stepper"
+}
