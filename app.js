@@ -26,6 +26,8 @@ signinRouter = express.Router();
 
 signupRouter = express.Router();
 
+loginRouter = express.Router();
+
 landingPageRouter = express.Router();
 
 businessInfoRouter = express.Router();
@@ -58,27 +60,46 @@ homeRouter.route('/').get(function(req, res){
 
 });
 
+loginRouter.route('/').post(function(req, res){
+
+    console.log(req.body.email);
+    console.log(req.body.password);
+
+    //authenticate the user using passport here...
+    if (true){
+
+        res.sendFile(__dirname + '/secure/user-page.html');
+
+    }
+    else{
+
+        res.send('index.html');
+
+    }
+
+});
+
 signinRouter.route('/').get(function(req, res){
 
-    res.sendFile(__dirname + '/sign-in-page.html');
+    res.sendFile(__dirname + '/home-page.html');
 
 });
 
 signupRouter.route('/').get(function(req, res){
 
-    res.sendFile(__dirname + '/sign-in-page.html');
+    res.sendFile(__dirname + '/home-page.html');
 
 });
 
 landingPageRouter.route('/').get(function(req, res){
 
-    res.sendFile(__dirname + '/sign-in-page.html');
+    res.sendFile(__dirname + '/home-page.html');
 
 });
 
 businessInfoRouter.route('/').get( function(req, res){
 
-    res.sendFile(__dirname + '/sign-in-page.html');
+    res.sendFile(__dirname + '/home-page.html');
 
 });
 
@@ -92,9 +113,11 @@ app.get('/', function(req, res){
 
     else
         //TODO: create sign in page
-        res.sendFile(__dirname + '/sign-in-page.html');
+        res.sendFile(__dirname + '/home-page.html');
 
 });
+
+app.use('/login', loginRouter);
 
 app.use('/home', homeRouter);
 
