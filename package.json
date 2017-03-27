@@ -4,12 +4,17 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bitstring": "^1.0.0",
     "body-parser": "^1.17.1",
     "bower": "^1.8.0",
+    "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
+    "express-session": "^1.15.2",
     "helmet": "^3.4.1",
     "http": "0.0.0",
     "mdl-stepper": "^1.1.6",
+    "mongoose": "^4.9.2",
     "passport": "^0.3.2"
   },
   "devDependencies": {},
