@@ -45,69 +45,133 @@
 <link rel="import" href="../bower_components/simple-modal/simple-modal.html">
 
 
-<style media="screen">
-    h4{
-        text-align: center;
-    }
-</style>
+
 
 <dom-module id="goodthings-stepper">
 
-<template>
+    <template id="stepper-template">
 
-    <paper-stepper linear selected="0">
-      <paper-step label="Step 1" editable>
-          <h4>Find Out What Charity Best Suits You</h4>
-          <ul class="app-grid">
-              <li class="item" style="padding:10px;">
-                  <paper-card image="http://placehold.it/400x150/e86850/000000">
-                      <div class="card-content">
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quod laborum, porro. Aliquid ullam unde vero doloribus magnam dolorem reprehenderit, possimus asperiores reiciendis sint culpa mollitia obcaecati et neque modi!
-                      </div>
-                      <div class="card-actions">
-                          <paper-button>View Posting</paper-button>
-                      </div>
-                  </paper-card>
-              </li>
-              <li class="item" style="padding:10px;"><paper-card image="http://placehold.it/400x150/e86850/000000">
-                  <div class="card-content">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quod laborum, porro. Aliquid ullam unde vero doloribus magnam dolorem reprehenderit, possimus asperiores reiciendis sint culpa mollitia obcaecati et neque modi!
-                  </div>
-                  <div class="card-actions">
-                      <paper-button>View Posting</paper-button>
-                  </div>
-              </paper-card></li>
-              <li class="item" style="padding:10px;"><paper-card image="http://placehold.it/400x150/e86850/000000">
-                  <div class="card-content">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quod laborum, porro. Aliquid ullam unde vero doloribus magnam dolorem reprehenderit, possimus asperiores reiciendis sint culpa mollitia obcaecati et neque modi!
-                  </div>
-                  <div class="card-actions">
-                      <paper-button>View Posting</paper-button>
-                  </div>
-              </paper-card></li>
-              <li class="item" style="padding:10px;"><paper-card image="http://placehold.it/400x150/e86850/000000">
-                  <div class="card-content">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quod laborum, porro. Aliquid ullam unde vero doloribus magnam dolorem reprehenderit, possimus asperiores reiciendis sint culpa mollitia obcaecati et neque modi!
-                  </div>
-                  <div class="card-actions">
-                      <paper-button>View Posting</paper-button>
-                  </div>
-              </paper-card></li>
-          </ul>
-      </paper-step>
-      <paper-step label="step 2" editable></paper-step>
-      <paper-step label="step 3" editable></paper-step>
-      <paper-step label="step 4" editable></paper-step>
-    </paper-stepper>
+    <style is="custom-style" include="app-grid-style">
+    :host {
+        --app-grid-columns: 2;
+    }
+    #stepper {
+        --paper-stepper-vertical-responsive-width: 650px;
+        --paper-stepper-horizontal-opened-height: 650px;
+        --paper-stepper-vertical-opened-height: 650px;
+        --paper-stepper-vertical-max-height: 650px;
+        --paper-stepper-horizontal-opening-transition-duration: 800ms;
+    }
+    paper-step{
+        --paper-step-opened-badge-background: #ff9163;
+        --paper-step-saved-badge-background: #ff9163;
+    }
+    ul{
+        list-style: none;
+    }
+    h4{
+        text-align: center;
+    }
+    .title-category{
+        text-align: center;
+    }
+    @media (max-width: 800px) {
+        .container {
+            @apply(--layout-vertical);
+        }
+        :host {
+            --app-grid-columns: 2;
+        }
+        .card-container {
+            width: 100%;
+            margin: 25px 0 0;
+        }
+    }
+    </style>
 
+    <paper-stepper linear selected="0" id="stepper" has-back-button no-button>
+        <paper-step label="Step 1: What" editable style="padding: 0px;">
 
+<h4>What Inspires You?</h4>
+            <ul class="app-grid">
 
+                <li class="item" on-tap="continue">
+                    <paper-card image="../images/enviro.png">
+                        <div class="card-content title-category">
+                            Environment & Sustainability
+                        </div>
+                    </paper-card>
+                </li>
+                <li class="item" on-tap="continue" >
+                    <paper-card image="../images/health.png">
+                        <div class="card-content title-category">
+                            Health & Wellness
+                        </div>
+
+                    </paper-card>
+                </li>
+                <li class="item" on-tap="continue">
+                    <paper-card image="../images/poverty.png">
+                        <div class="card-content title-category">
+                            Poverty Alleviation
+                        </div>
+                    </paper-card>
+                </li>
+                <li class="item" on-tap="continue">
+                    <paper-card image="../images/human.png">
+                        <div class="card-content title-category">
+                            Education & Literacy
+                        </div>
+                    </paper-card>
+                </li>
+            </ul>
+        </paper-step>
+        <paper-step label="Step 2: Who" editable>
+
+            <h4>Who Do You Want To Volunteer With?</h4>
+
+            <ul class="app-grid">
+                <li class="item" on-tap="continue">
+                    <paper-card image="../images/women.png">
+                        <div class="card-content title-category">
+                            Women
+                        </div>
+
+                    </paper-card>
+                </li>
+                <li class="item" on-tap="continue" ><paper-card image="../images/immigrant.png">
+                    <div class="card-content title-category">
+                        New Comers & Immigrants
+                    </div>
+
+                </paper-card></li>
+                <li class="item" on-tap="continue"><paper-card image="../images/child.png">
+                    <div class="card-content title-category">
+                        Children & Youth
+                    </div>
+                </paper-card>
+            </li>
+            <li class="item" on-tap="continue"><paper-card image="../images/disabled.png">
+                <div class="card-content title-category">
+                    Disabled & Handicapped
+                </div>
+            </paper-card>
+        </li>
+    </ul>
+
+</paper-step>
+
+</paper-step>
+<paper-step label="Step 3: Now" editable></paper-step>
+
+</paper-stepper>
 
 </template>
 
 <script>
 Polymer({
     is: 'goodthings-stepper',
+    continue: function(){ this.$.stepper.continue()}
 });
 </script>
 

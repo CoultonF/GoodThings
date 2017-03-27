@@ -58,7 +58,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     </style>
     <style include="app-grid-style">
-
     app-drawer{
         --app-drawer-content-container: {
             background-color: rgba(0,0,0,0.85);
@@ -69,7 +68,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     app-drawer *{
         background-color: rgba(0,0,0,0);
-        color: white;
+        color: #f6f6f6;
     }
     paper-icon-button.large #menu {
         width: 50px;
@@ -140,9 +139,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-image: url('../images/logo-SM.png');
         background-repeat: no-repeat;
         background-position: center center;
-        background-size: 90px;
+        background-size: 80px;
         /* The difference in font size is used to calculate the scale of the title in the transition. */
-        font-size: 16px;
+        font-size: 17px;
     }
     [main-title] {
         position: absolute;
@@ -158,6 +157,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         transform-origin: center top !important;
         /* The difference in font size is used to calculate the scale of the title in the transition. */
         font-size: 32px;
+    }
+    .menu-icon-pos{
+        position:absolute;
+        top:20px;
+        right:20px;
     }
     a {
         text-decoration: none;
@@ -198,7 +202,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-align: center;
         border-top: 1px solid #CCC;
         border-bottom: 1px solid #CCC;
-        font-size: 3rem;
+        font-size: 2rem;
         padding: 8px;
         text-align: center;
         margin: 24px auto;
@@ -217,7 +221,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     .container {
         @apply(--layout-horizontal);
-        max-width: 800px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .contain{
+        max-width: 1000px;
         margin: 0 auto;
     }
     .container > * {
@@ -238,6 +246,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     .card-container {
         width: 720px;
         margin: 50px auto auto auto;
+    }
+
+    .hide-except-for-small{
+        display: none;
+        text-align: center;
+        margin: 0 auto;
     }
     @media (max-width: 600px) {
         .container {
@@ -277,6 +291,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         app-drawer{
             --app-drawer-width: 256px;
         }
+        li:not(:first-child){
+            display: none !important;
+
+        }
+        .hide-except-for-small{
+            display: block;
+        }
+        .menu-icon-pos{
+            position:absolute;
+            top:10px;
+            right:20px;
+        }
 
     }
     </style>
@@ -307,13 +333,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-listbox>
     </app-drawer>
     <app-header-layout>
-        <app-scrollpos-control
-        selected="[[_pageData.page]]"
-        reset="[[_isDetailPage(_pageData.page)]]"></app-scrollpos-control>
-        <app-header effects="resize-title" condenses fixed shadow>
+
+        <app-header effects="resize-title" condenses shadow>
 
             <app-toolbar class="top-toolbar">
-                <paper-icon-button class="large" icon="menu" style="position:absolute;top:20px;right:20px;" drawer-toggle horizontal end-justified layout></paper-icon-button>
+                <paper-icon-button class="large menu-icon-pos" icon="menu" drawer-toggle horizontal end-justified layout></paper-icon-button>
                 <content select="[drawer-toggle]"></content>
                 <div condensed-title></div>
             </app-toolbar>
@@ -332,42 +356,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </header>
                 <section id="postings">
                     <h3>Discover</h3>
-                    <ul class="app-grid">
-                        <li class="item" style="padding:10px;">
-                            <paper-card image="http://placehold.it/400x150/e86850/000000">
+                    <div class="contain">
+                        <ul class="app-grid">
+                            <li class="item" style="padding:10px;">
+                                <paper-card image="http://placehold.it/400x150/e86850/000000">
+                                    <div class="card-content">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quod laborum, porro. Aliquid ullam unde vero doloribus magnam dolorem reprehenderit, possimus asperiores reiciendis sint culpa mollitia obcaecati et neque modi!
+                                    </div>
+                                </paper-card>
+                            </li>
+                            <li class="item" style="padding:10px;"><paper-card image="http://placehold.it/400x150/e86850/000000">
                                 <div class="card-content">
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quod laborum, porro. Aliquid ullam unde vero doloribus magnam dolorem reprehenderit, possimus asperiores reiciendis sint culpa mollitia obcaecati et neque modi!
                                 </div>
-                                <div class="card-actions">
-                                    <paper-button>View Posting</paper-button>
+                            </paper-card></li>
+                            <li class="item" style="padding:10px;"><paper-card image="http://placehold.it/400x150/e86850/000000">
+                                <div class="card-content">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quod laborum, porro. Aliquid ullam unde vero doloribus magnam dolorem reprehenderit, possimus asperiores reiciendis sint culpa mollitia obcaecati et neque modi!
                                 </div>
-                            </paper-card>
-                        </li>
-                        <li class="item" style="padding:10px;"><paper-card image="http://placehold.it/400x150/e86850/000000">
-                            <div class="card-content">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quod laborum, porro. Aliquid ullam unde vero doloribus magnam dolorem reprehenderit, possimus asperiores reiciendis sint culpa mollitia obcaecati et neque modi!
-                            </div>
-                            <div class="card-actions">
-                                <paper-button>View Posting</paper-button>
-                            </div>
-                        </paper-card></li>
-                        <li class="item" style="padding:10px;"><paper-card image="http://placehold.it/400x150/e86850/000000">
-                            <div class="card-content">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quod laborum, porro. Aliquid ullam unde vero doloribus magnam dolorem reprehenderit, possimus asperiores reiciendis sint culpa mollitia obcaecati et neque modi!
-                            </div>
-                            <div class="card-actions">
-                                <paper-button>View Posting</paper-button>
-                            </div>
-                        </paper-card></li>
-                        <li class="item" style="padding:10px;"><paper-card image="http://placehold.it/400x150/e86850/000000">
-                            <div class="card-content">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quod laborum, porro. Aliquid ullam unde vero doloribus magnam dolorem reprehenderit, possimus asperiores reiciendis sint culpa mollitia obcaecati et neque modi!
-                            </div>
-                            <div class="card-actions">
-                                <paper-button>View Posting</paper-button>
-                            </div>
-                        </paper-card></li>
-                    </ul>
+                            </paper-card></li>
+                            <li class="item" style="padding:10px;"><paper-card image="http://placehold.it/400x150/e86850/000000">
+                                <div class="card-content">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio quod laborum, porro. Aliquid ullam unde vero doloribus magnam dolorem reprehenderit, possimus asperiores reiciendis sint culpa mollitia obcaecati et neque modi!
+                                </div>
+                            </paper-card></li>
+                        </ul>
+                    </div>
+                    <paper-button onclick="document.querySelector('iron-pages').select('signup')" name="signup" class="hide-except-for-small action-button">See More...</paper-button>
                 </section>
                 <section id="about">
                     <h3>Get Started</h3>

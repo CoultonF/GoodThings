@@ -166,13 +166,13 @@ Custom property | Description | Default
         display: none;
       }
       :host(:not[vertical]) #content-wrapper:not(:hover) ::content paper-step[opened] {
-        overflow: visible;
+        overflow: none;
       }
     </style>
-    
+
     <!-- Hidden block with width equals to the responsive threshold -->
     <div id="verticalResponsiveWidth"></div>
-    
+
     <!-- This wrapper contains the horizontal stepper header or the full vertical stepper -->
     <div id="content-wrapper">
       <content select="[[selectable]]"></content>
@@ -453,7 +453,7 @@ Custom property | Description | Default
         }
         event.detail.keyboardEvent.preventDefault();
       },
-      
+
       _onRightKey: function(event) {
         if (this._isRTL) {
           this._focusPrevious();
@@ -670,7 +670,7 @@ Custom property | Description | Default
             savedStepNumber++;
           }
         }.bind(this));
-         
+
         this._setSavedStepNumber(savedStepNumber);
         // method from IronSelectableBehavior
         this._updateSelected();
