@@ -2,11 +2,17 @@ var express = require('express'),
 
 bodyParser = require('body-parser'),
 
+cookieParser = require('cookie-parser'),
+
 mongodb = require('mongodb'),
 
 MongoClient = mongodb.MongoClient,
 
 url = 'mongodb://localhost:27017/good_things',
+
+mongoose = require('mongoose'),
+
+bcrypt = require('bcryptjs'),
 
 fs = require('fs'),
 
@@ -17,6 +23,12 @@ app = express(),
 helmet = require('helmet'),
 
 passport = require('passport'),
+
+bitString = require('bitstring'),
+
+session = require('express-session'),
+
+bits = new bitString(),
 
 port = 3000,
 
@@ -36,23 +48,49 @@ app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.urlencoded({extended:false}));
 
+app.use(cookieParser());
+
 app.use(helmet());
 
+// required for passport
+app.use(session({ secret: bits.writebits(20),
+                resave: false,
+                saveUninitialized: false })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
 
-//MongoClient
-MongoClient.connect(url, function(err, db){
 
-    if(err){
-        console.log(err);
-    }
-    else{
-        console.log('connection made at ' + url);
-        db.close();
-    }
-
+mongoose.connect(url, function(error) {
+  if(error){
+    console.log(error);
+  }
+  else {
+    console.log("Connection made at: " +url);
+  }
 });
 
+// define the schema for our user model
+var userSchema = mongoose.Schema({
 
+    local            : {
+        email        : String,
+        password     : String,
+    }
+  });
+
+// methods ======================
+// generating a hash
+userSchema.methods.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+// checking if password is valid
+userSchema.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.local.password);
+};
+
+// create the model for users and expose it to our app
+module.exports = mongoose.model('User', userSchema);
 
 homeRouter.route('/').get(function(req, res){
 
