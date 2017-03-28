@@ -1,5 +1,5 @@
 # GoodThings
-To view the project go to: http://goodthings.coultonfraser.com/
+To view the project go to: https://goodthings.coultonfraser.com/
 
 # Instantiating MongoDB on Local Device
 Make sure you have MongoDB installed locally on your device
@@ -14,10 +14,10 @@ Make sure you have MongoDB installed locally on your device
 # For Mac
   In root folder of GoodThings, run the following command:
   
-  sudo mongod --dbpath .\data\
+  sudo mongod --dbpath ./data
   
 
-Now a MongoDB instance is running locally through that terminal useing the database provided
+Now a MongoDB instance is running locally through that terminal using the database provided
 by Good Things. 
 
 
