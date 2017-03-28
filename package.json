@@ -4,10 +4,12 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",
     "bitstring": "^1.0.0",
     "body-parser": "^1.17.1",
     "bower": "^1.8.0",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
     "express-session": "^1.15.2",
@@ -15,7 +17,9 @@
     "http": "0.0.0",
     "mdl-stepper": "^1.1.6",
     "mongoose": "^4.9.2",
-    "passport": "^0.3.2"
+    "morgan": "^1.8.1",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {},
   "scripts": {
