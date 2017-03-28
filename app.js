@@ -59,11 +59,11 @@ app.use(cookieParser());
 app.use(helmet());
 
 // required for passport
-app.use(session({ secret: bits.writebits(20),
+app.use(session({ secret: 'Good_Things',
     resave: false,
     saveUninitialized: false })); // session secret
     //see ./src/passport/passport.js for the passport code
-    //require('./src/passport/passport')(passport);
+
 
     app.use(morgan('dev')); // log every request to the console
 
@@ -81,7 +81,7 @@ app.use(session({ secret: bits.writebits(20),
 
     app.use(flash());
 
-
+    require('./src/passport/passport')(passport);
     // define the schema for our user model
     // var userSchema = mongoose.Schema({
     //
@@ -110,6 +110,20 @@ app.use(session({ secret: bits.writebits(20),
         res.sendFile(__dirname + '/home-page.html');
 
     });
+
+    app.get('/profile', isLoggedIn, function(req, res) {
+        res.send('Profile Page');
+    });
+
+    function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}
 
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect : '/profile', // redirect to the secure profile section
