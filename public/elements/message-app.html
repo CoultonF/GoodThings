@@ -42,6 +42,9 @@
             background-color: #ff9163;
         };
     }
+    #chat{
+      height:50px;
+    }
     paper-icon-button {
         color: white;
         --paper-icon-button-ink-color: white;
@@ -154,13 +157,37 @@
     }
   }
 </style>
-
+<!-- Un-comment when feed is back up
 <div class="card-container">
-    chat window here
+    <div id="chat"></div>
+    <form id="send message">
+        <input size="35" id="message"></input>
+        <input type="submit"></input>
+    </form>
 </div>
 
 </template>
+<script src='http://code.jquery.com/jquery-latest.min.js'></script>
+<script src='../../node_modules/socket.io/lib/socket.js'></script>
+<script>
+  jQuery(function($){
+    var socket = io.connect();
+    var $messageForm = $('$send-message');
+    var $messageBox = $('message');
+    var $chat = $('chat');
 
+    $messageForm.submit(function(e){
+      e.preventDefault();
+      socket.emit('send message', $messageBox.val());
+      $messageBox.val('');
+  });
+
+  socket.on('new message', function(data){
+    $chat.append(data + "<br/>");
+  });
+});
+</script>
+-->
 <script>
 Polymer({
     is: 'message-app',

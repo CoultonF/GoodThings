@@ -16,9 +16,11 @@ bcrypt = require('bcryptjs'),
 
 fs = require('fs'),
 
-http = require('http'),
-
 app = express(),
+
+server = require('http').createServer(app),
+
+io = require('socket.io').listen(server),
 
 helmet = require('helmet'),
 
@@ -43,6 +45,8 @@ signinRouter = express.Router();
 signupRouter = express.Router();
 
 loginRouter = express.Router();
+
+chatRouter = express.Router();
 
 landingPageRouter = express.Router();
 
@@ -82,28 +86,6 @@ app.use(session({ secret: 'Good_Things',
     app.use(flash());
 
     require('./src/passport/passport')(passport);
-    // define the schema for our user model
-    // var userSchema = mongoose.Schema({
-    //
-    //     local            : {
-    //         email        : String,
-    //         password     : String,
-    //     }
-    //   });
-
-    // methods ======================
-    // generating a hash
-    // userSchema.methods.generateHash = function(password) {
-    //     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-    // };
-    //
-    // // checking if password is valid
-    // userSchema.methods.validPassword = function(password) {
-    //     return bcrypt.compareSync(password, this.local.password);
-    // };
-
-    // create the model for users and expose it to our app
-    //module.exports = mongoose.model('User', userSchema);
 
     homeRouter.route('/').get(function(req, res){
 
@@ -123,7 +105,7 @@ app.use(session({ secret: 'Good_Things',
 
     // if they aren't redirect them to the home page
     res.redirect('/');
-}
+    }
 
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect : '/profile', // redirect to the secure profile section
@@ -137,10 +119,28 @@ app.use(session({ secret: 'Good_Things',
         failureFlash : true // allow flash messages
     }));
 
+    io.sockets.on('connection', function(socket){
+      socket.on('send message', function(data){
+        io.sockets.emit('new message',data);
+      });
+    });
+
+    /*
+      TODO:Implement chat
+    */
+    app.get('/chat', function(req, res) {
+        res.send('Chat');
+    });
+
     app.get('/profile', function(req, res) {
         res.send('Profile');
     });
 
+    chatRouter.route('/').get(function(req, res){
+
+        res.sendFile(__dirname + '/home-page.html');
+
+    });
 
     signinRouter.route('/').get(function(req, res){
 
@@ -184,6 +184,8 @@ app.use(session({ secret: 'Good_Things',
 
     app.use('/home', homeRouter);
 
+    app.use('/chat', chatRouter);
+
     app.use('/signin', signinRouter);
 
     app.use('/', landingPageRouter);
@@ -192,16 +194,15 @@ app.use(session({ secret: 'Good_Things',
 
     app.use('/business', businessInfoRouter);
 
-    app.listen(port, function(err){
-
-        if(err){
-
-            console.log('Error: ' + err);
-
-        }
-
+    //Socket.io server instance
+    server.listen(3000, function(err){
+        if(err){console.log('Error: ' + err);}
         else
-
-        console.log('Server started at localhost:' + port);
-
+        console.log('HTTP Server started at localhost: 3001');
     });
+/*    app.listen(port, function(err){
+        if(err){console.log('Error: ' + err);}
+        else
+        console.log('Server started at localhost:' + port);
+    });
+*/
