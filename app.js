@@ -94,7 +94,10 @@ app.use(session({ secret: 'Good_Things',
     });
 
     app.get('/profile', isLoggedIn, function(req, res) {
-        res.send('Profile Page');
+        res.redirect('/home');
+    });
+    app.get('/home', isLoggedIn, function(req, res) {
+        res.sendFile(__dirname + '/user-page.html');
     });
 
     function isLoggedIn(req, res, next) {
