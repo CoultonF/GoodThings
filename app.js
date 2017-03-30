@@ -99,16 +99,12 @@ app.use(session({ secret: 'Good_Things',
     app.get('/home', isLoggedIn, function(req, res) {
         res.sendFile(__dirname + '/user-page.html');
     });
+    app.get('/logout', isLoggedIn, function(req, res) {
+        req.logout();
+        res.redirect('/');
+    });
 
-    function isLoggedIn(req, res, next) {
 
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
-        return next();
-
-    // if they aren't redirect them to the home page
-    res.redirect('/');
-    }
 
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect : '/profile', // redirect to the secure profile section
@@ -196,6 +192,16 @@ app.use(session({ secret: 'Good_Things',
     app.use('/signup', signupRouter);
 
     app.use('/business', businessInfoRouter);
+
+    function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+    }
 
     //Socket.io server instance
     server.listen(3000, function(err){

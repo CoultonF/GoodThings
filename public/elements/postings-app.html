@@ -132,7 +132,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </div>
                 </paper-item>
 
-                <paper-item name="signout">Sign Out</paper-item>
+                <paper-item on-tap="logout">Sign Out</paper-item>
             </paper-listbox>
 
         </app-header-layout>
@@ -190,6 +190,12 @@ Polymer({
         _subRoute: Object,
         _pageData: Object,
         _idData: Object
+    },
+    logout: function(){
+
+        console.log("Tapped");
+        location.href = "/logout";
+
     },
     attached: function() {
         this.async(function() {
