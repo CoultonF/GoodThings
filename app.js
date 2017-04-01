@@ -207,7 +207,7 @@ app.use(session({ secret: 'Good_Things',
     server.listen(3000, function(err){
         if(err){console.log('Error: ' + err);}
         else
-        console.log('HTTP Server started at localhost: 3001');
+        console.log('HTTP Server started at localhost: 3000');
     });
 /*    app.listen(port, function(err){
         if(err){console.log('Error: ' + err);}
