@@ -72,6 +72,7 @@ app.use(session({ secret: 'Good_Things',
     app.use(morgan('dev')); // log every request to the console
 
     app.use(passport.initialize());
+    
     app.use(passport.session()); // persistent login sessions
 
     mongoose.connect(url, function(error) {
@@ -131,7 +132,7 @@ app.use(session({ secret: 'Good_Things',
 
     chatRouter.route('/').get(function(req, res){
 
-        res.sendFile(__dirname + '/home-page.html');
+            res.sendFile(__dirname + '/home-page.html');
 
     });
 
@@ -149,7 +150,10 @@ app.use(session({ secret: 'Good_Things',
 
     landingPageRouter.route('/').get(function(req, res){
 
-        res.sendFile(__dirname + '/home-page.html');
+        if (isLoggedIn())
+            res.redirect('/home');
+        else
+            res.sendFile(__dirname + '/home-page.html');
 
     });
 
@@ -161,15 +165,10 @@ app.use(session({ secret: 'Good_Things',
 
     app.get('/', function(req, res){
 
-        //TODO: authenticate token if not valid or null
-
-        if(false)
-
-        res.sendFile(__dirname + '/home-page.html');
-
+        if (req.isAuthenticated())
+            res.redirect('/home');
         else
-        //TODO: create sign in page
-        res.sendFile(__dirname + '/home-page.html');
+            res.sendFile(__dirname + '/home-page.html');
 
     });
 
