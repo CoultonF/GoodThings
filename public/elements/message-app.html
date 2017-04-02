@@ -22,8 +22,9 @@
 <link rel="import" href="../bower_components/google-map/google-map-poly.html">
 <link rel="import" href="../bower_components/google-map/google-map-directions.html">
 
-<script src='../bower_components/jquery/dist/jquery.min.js'></script>
-<script src='../socket.io/socket.io.js'</script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
 
 <dom-module id="message-app">
     <template>
@@ -157,30 +158,28 @@
   }
 </style>
 <!-- Un-comment when feed is back up -->
-<div class="card-container">
-    <div id="chat"></div>
-    <form id="send-message">
-        <input size="35" id="message"></input>
-        <input type="submit"></input>
-    </form>
-</div>
-<script>
-$(function($){
-    var socket = io.connect();
-    var $messageForm = $('#send-message');
-    var $messageBox = $('#message');
-    var $chat = $('#chat');
+<div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="well">
+          <h3>Online Users</h3>
+          <ul class="list-group" id="users"></ul>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="chat" id="chat"></div>
 
-    $messageForm.submit(function(e){
-      e.preventDefault();
-      socket.emit('send message', $messageBox.val());
-      $messageBox.val('');
-  });
-});
-  socket.on('new message', function(data){
-    $chat.append(data + "<br/>");
-  });
-</script>
+        <form id="messageForm">
+          <div class="form-group">
+            <label>Enter Message</label>
+            <textarea class="form-control" id="message"></textarea>
+            <br />
+            <input type="submit" class="btn btn-primary" value="Send Message" />
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
 
 </template>
 
