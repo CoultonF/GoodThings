@@ -210,10 +210,16 @@ app.use(session({ secret: 'Good_Things',
         console.log('Server started at localhost:' + port);
     });
 */
+users = [];
 connections = [];
     io.sockets.on('connection', function(socket){
       connections.push(socket);
-      socket.on('send message', function(data){
-        io.sockets.emit('new message',data);
-      });
+      console.log('Connected: %s sockets connected', connections.length);
+
+      connections.splice(connections.indexOf(socket), 1);
+      console.log('Disconnected: %s sockets connected', connections.length);
+
+      //socket.on('send message', function(data){
+      //  io.sockets.emit('new message',data);
+      //});
     });
