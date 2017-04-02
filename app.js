@@ -118,12 +118,6 @@ app.use(session({ secret: 'Good_Things',
         failureFlash : true // allow flash messages
     }));
 
-    io.sockets.on('connection', function(socket){
-      socket.on('send message', function(data){
-        io.sockets.emit('new message',data);
-      });
-    });
-
     /*
       TODO:Implement chat
     */
@@ -215,3 +209,10 @@ app.use(session({ secret: 'Good_Things',
         console.log('Server started at localhost:' + port);
     });
 */
+connections = [];
+    io.sockets.on('connection', function(socket){
+      connections.push(socket);
+      socket.on('send message', function(data){
+        io.sockets.emit('new message',data);
+      });
+    });
