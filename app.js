@@ -34,6 +34,8 @@ flash = require('connect-flash'),
 
 morgan = require('morgan'),
 
+profile = require('./src/app/profile'),
+
 bits = new bitString(),
 
 port = 3000,
@@ -72,7 +74,7 @@ app.use(session({ secret: 'Good_Things',
     app.use(morgan('dev')); // log every request to the console
 
     app.use(passport.initialize());
-    
+
     app.use(passport.session()); // persistent login sessions
 
     mongoose.connect(url, function(error) {
