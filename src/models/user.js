@@ -9,6 +9,11 @@ var userSchema = mongoose.Schema({
     local            : {
         email        : String,
         password     : String,
+        profileInfo  : {
+
+            firstName: String
+            
+        }
     },
     // postings         : {
     //     title        : String,
