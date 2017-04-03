@@ -43,11 +43,15 @@
             background-color: #ff9163;
         };
     }
+    .container-margin {
+      margin-top: 30px;
+    }
     /*#messageArea{
       display:none;
     }*/
     #chat{
-      height:50px;
+      height:400px;
+      overflow-y: auto;
     }
     paper-icon-button {
         color: white;
@@ -162,7 +166,6 @@
   }
 </style>
 <!-- Un-comment when feed is back up -->
-<div class="container">
     <div id="messageArea" class="row">
       <div class="col-md-4">
         <div class="well">
@@ -171,9 +174,9 @@
         </div>
       </div>
       <div class="col-md-8">
-        <div class="chat" id="chat"></div>
-
-        <form id="messageForm">
+        <div class="chat" id="chat">
+        </div>
+        <form class="form-group" id="messageForm">
           <div class="form-group">
             <label>Enter Message</label>
             <textarea class="form-control" id="message"></textarea>
@@ -183,7 +186,7 @@
         </form>
       </div>
     </div>
-</div>
+    </div>
 <script>
 $(function(){
   console.log('JQuery Ran');
