@@ -186,8 +186,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <iron-ajax
   id="getNameEmail"
   url="/getNameEmail"
-  params='{"type":"all"}'
   handle-as="json"
+  content-type="json"
+  method="post"
   on-response="handleResponse"></iron-ajax>
 </template>
 

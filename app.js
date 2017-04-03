@@ -146,14 +146,25 @@ app.use(session({ secret: 'Good_Things',
         failureFlash : true // allow flash messages
     }));
 
+    //profileInfo is undefined when it is defined as per the mongodb
     app.post('/getNameEmail', function(req, res) {
 
         if(req.isAuthenticated())
         {
-          var data = {
-            "name":req.user.local.firstName+" "+req.user.local.lastName,
-            "email":req.user.local.email
-          };
+          if(req.user.profileInfo == null)
+          {
+            var data ={
+              "name":"Unknown",
+              "email":req.user.local.email
+            };
+          }
+          else
+          {
+            var data = {
+              "name":req.user.profileInfo.firstName+" "+req.user.profileInfo.lastName,
+              "email":req.user.local.email
+            };
+          }
           res.send(JSON.stringify(data));
         }
     });
