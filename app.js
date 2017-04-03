@@ -99,9 +99,8 @@ app.use(session({ secret: 'Good_Things',
     });
 
     app.get('/api/listPostings', function (req, res) {
-        var postingInfo = postings.find();
-        console.log(postingInfo);
-        res.json(postingInfo);
+      console.log("Request data:");
+      console.log(postings.find());
     })
 
     app.get('/profile', isLoggedIn, function(req, res) {

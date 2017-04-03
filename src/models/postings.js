@@ -65,7 +65,7 @@ var userSchema = mongoose.Schema({
 
             Evening: Boolean
 
-    }},
+    }}
 }
 });
 module.exports = mongoose.model('Postings', userSchema);
