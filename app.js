@@ -234,7 +234,7 @@ connections = [];
       });
 
       socket.on('send message', function(data){
-        io.sockets.emit('new message',{msg: data})
+        io.sockets.emit('new message',{msg: data});
       });
 
       //socket.on('send message', function(data){
