@@ -42,7 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <template is="dom-bind">
 
-    <iron-ajax url="data/recipes.json" auto last-response="{{recipes}}"></iron-ajax>
+    <iron-ajax url="api/listPostings" auto last-response="{{recipes}}"></iron-ajax>
     <postings-app recipes="[[recipes]]"></postings-app>
 
   </template>
