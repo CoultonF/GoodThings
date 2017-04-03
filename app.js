@@ -68,227 +68,235 @@ app.use(helmet());
 
 // required for passport
 app.use(session({ secret: 'Good_Things',
-    resave: false,
-    saveUninitialized: false })); // session secret
-    //see ./src/passport/passport.js for the passport code
+resave: false,
+saveUninitialized: false })); // session secret
+//see ./src/passport/passport.js for the passport code
 
 
-    app.use(morgan('dev')); // log every request to the console
+app.use(morgan('dev')); // log every request to the console
 
-    app.use(passport.initialize());
+app.use(passport.initialize());
 
-    app.use(passport.session()); // persistent login sessions
+app.use(passport.session()); // persistent login sessions
 
-    mongoose.connect(url, function(error, db) {
-        if(error){
-            console.log(error);
-        }
-        else {
-            console.log("Connection made at: " +url);
-        }
-    });
+mongoose.connect(url, function(error, db) {
+    if(error){
+        console.log(error);
+    }
+    else {
+        console.log("Connection made at: " +url);
+    }
+});
 
-    app.use(flash());
+app.use(flash());
 
-    require('./src/passport/passport')(passport);
+require('./src/passport/passport')(passport);
 
-    homeRouter.route('/').get(function(req, res){
+homeRouter.route('/').get(function(req, res){
 
-        res.sendFile(__dirname + '/home-page.html');
+    res.sendFile(__dirname + '/home-page.html');
 
-    });
+});
 
-    app.get('/api/listPostings', function (req, res) {
-      // find each person with a last name matching 'Ghost'
-      var query = postings.find();
+app.get('/api/listPostings', function (req, res) {
+    // find each person with a last name matching 'Ghost'
+    var query = postings.find();
 
-      // execute the query at a later time
-      query.exec(function (err, posting) {
+    // execute the query at a later time
+    query.exec(function (err, posting) {
         if (err) return handleError(err);
-        res.json(posting) // Space Ghost is a talk show host.
-      })
+        res.json(posting); // Space Ghost is a talk show host.
     });
+});
 
-    app.get('/profile', isLoggedIn, function(req, res) {
-        res.redirect('/home');
-    });
-    app.get('/home', isLoggedIn, function(req, res) {
-        res.sendFile(__dirname + '/user-page.html');
-    });
-    app.get('/logout', isLoggedIn, function(req, res) {
-        req.logout();
-        res.redirect('/');
-    });
-    app.post('/editProfile', isLoggedIn, function(req, res) {
+app.get('/profile', isLoggedIn, function(req, res) {
+    res.redirect('/home');
+});
+app.get('/home', isLoggedIn, function(req, res) {
+    res.sendFile(__dirname + '/user-page.html');
+});
+app.get('/logout', isLoggedIn, function(req, res) {
+    req.logout();
+    res.redirect('/');
+});
+app.post('/editProfile', isLoggedIn, function(req, res) {
 
-        var firstName = req.body.firstName;
-        var lastName = req.body.lastName;
-        var biography = req.body.biography;
-        var interests = req.body.interests;
-        console.log(req.body.interests);
-        console.log(req.body.firstName);
-        var data = {"firstName":firstName,"lastName":lastName,"biography":biography,"interests":interests};
-        profile.updateProfile(req.user.local.email, data);
-        console.log('EMAIL: '+req.user.local.email);
-        res.send(req.user);
+    var firstName = req.body.firstName;
+    var lastName = req.body.lastName;
+    var biography = req.body.biography;
+    var interests = req.body.interests;
+    console.log(req.body.interests);
+    console.log(req.body.firstName);
+    var data = {"firstName":firstName,"lastName":lastName,"biography":biography,"interests":interests};
+    profile.updateProfile(req.user.local.email, data);
+    console.log('EMAIL: '+req.user.local.email);
+    res.send(req.user);
 
-    });
+});
 
-    app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
+app.post('/signup', passport.authenticate('local-signup', {
+    successRedirect : '/profile', // redirect to the secure profile section
+    failureRedirect : '/signup', // redirect back to the signup page if there is an error
+    failureFlash : true // allow flash messages
+}));
 
-    app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/signin', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
+app.post('/login', passport.authenticate('local-login', {
+    successRedirect : '/profile', // redirect to the secure profile section
+    failureRedirect : '/signin', // redirect back to the signup page if there is an error
+    failureFlash : true // allow flash messages
+}));
 
-    //profileInfo is undefined when it is defined as per the mongodb
-    app.post('/getNameEmail', function(req, res) {
+//profileInfo is undefined when it is defined as per the mongodb
+app.post('/getNameEmail', function(req, res) {
 
-        if(req.isAuthenticated())
+    if(req.isAuthenticated())
+    {
+        if(req.user.profileInfo == null)
         {
-          if(req.user.profileInfo == null)
-          {
             var data ={
-              "name":"Unknown",
-              "email":req.user.local.email
+                "name":"Unknown",
+                "email":req.user.local.email
             };
-          }
-          else
-          {
-            var data = {
-              "name":req.user.profileInfo.firstName+" "+req.user.profileInfo.lastName,
-              "email":req.user.local.email
-            };
-          }
-          res.send(JSON.stringify(data));
         }
-    });
-
-    /*
-      TODO:Implement chat
-    */
-    app.get('/chat', function(req, res) {
-        res.send('Chat');
-    });
-
-    app.get('/profile', function(req, res) {
-        res.send('Profile');
-    });
-
-    chatRouter.route('/').get(function(req, res){
-
-            res.sendFile(__dirname + '/home-page.html');
-
-    });
-
-    signinRouter.route('/').get(function(req, res){
-
-        res.sendFile(__dirname + '/home-page.html');
-
-    });
-
-    signupRouter.route('/').get(function(req, res){
-
-        res.sendFile(__dirname + '/home-page.html');
-
-    });
-
-    landingPageRouter.route('/').get(function(req, res){
-
-        if (isLoggedIn())
-            res.redirect('/home');
         else
-            res.sendFile(__dirname + '/home-page.html');
+        {
+            var data = {
+                "name":req.user.profileInfo.firstName+" "+req.user.profileInfo.lastName,
+                "email":req.user.local.email
+            };
+        }
+        res.send(JSON.stringify(data));
+    }
+});
 
-    });
+/*
+TODO:Implement chat
+*/
+app.get('/chat', function(req, res) {
+    res.send('Chat');
+});
 
-    businessInfoRouter.route('/').get( function(req, res){
+app.get('/profile', function(req, res) {
+    res.send('Profile');
+});
 
-        res.sendFile(__dirname + '/home-page.html');
+chatRouter.route('/').get(function(req, res){
 
-    });
+    res.sendFile(__dirname + '/home-page.html');
 
-    app.get('/', function(req, res){
+});
 
-        if (req.isAuthenticated())
-            res.redirect('/home');
-        else
-            res.sendFile(__dirname + '/home-page.html');
+signinRouter.route('/').get(function(req, res){
 
-    });
+    res.sendFile(__dirname + '/home-page.html');
 
-    app.use('/login', loginRouter);
+});
 
-    app.use('/home', homeRouter);
+signupRouter.route('/').get(function(req, res){
 
-    app.use('/chat', chatRouter);
+    res.sendFile(__dirname + '/home-page.html');
 
-    app.use('/signin', signinRouter);
+});
 
-    app.use('/', landingPageRouter);
+landingPageRouter.route('/').get(function(req, res){
 
-    app.use('/signup', signupRouter);
+    if (isLoggedIn())
+    res.redirect('/home');
+    else
+    res.sendFile(__dirname + '/home-page.html');
 
-    app.use('/business', businessInfoRouter);
+});
 
-    function isLoggedIn(req, res, next) {
+businessInfoRouter.route('/').get( function(req, res){
+
+    res.sendFile(__dirname + '/home-page.html');
+
+});
+
+app.get('/', function(req, res){
+
+    if (req.isAuthenticated())
+    res.redirect('/home');
+    else
+    res.sendFile(__dirname + '/home-page.html');
+
+});
+
+app.use('/login', loginRouter);
+
+app.use('/home', homeRouter);
+
+app.use('/chat', chatRouter);
+
+app.use('/signin', signinRouter);
+
+app.use('/', landingPageRouter);
+
+app.use('/signup', signupRouter);
+
+app.use('/business', businessInfoRouter);
+
+function isLoggedIn(req, res, next) {
 
     // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
-        return next();
+    return next();
 
     // if they aren't redirect them to the home page
     res.redirect('/');
-    }
+}
 
-    //Socket.io server instance
-    server.listen(3000, function(err){
-        if(err){console.log('Error: ' + err);}
-        else
-        console.log('HTTP Server started at localhost: 3000');
-    });
+//Socket.io server instance
+server.listen(3000, function(err){
+    if(err){console.log('Error: ' + err);}
+    else
+    console.log('HTTP Server started at localhost: 3000');
+});
 /*    app.listen(port, function(err){
-        if(err){console.log('Error: ' + err);}
-        else
-        console.log('Server started at localhost:' + port);
-    });
+if(err){console.log('Error: ' + err);}
+else
+console.log('Server started at localhost:' + port);
+});
 */
-    newMessages = 0;
-    users = [];
-    connections = [];
-    io.sockets.on('connection', function(socket){
-      connections.push(socket);
-      console.log('Connected: %s sockets connected', connections.length);
+newMessages = 0;
+users = [];
+connections = [];
+io.sockets.on('connection', function(socket){
+    connections.push(socket);
+    console.log('Connected: %s sockets connected', connections.length);
 
-      //Disconnected
-      socket.on('disconnect',function(data){
+    //Disconnected
+    socket.on('disconnect',function(data){
         users.splice(users.indexOf(socket.username), 1);
         updateUsernames();
         connections.splice(connections.indexOf(socket), 1);
         console.log('Disconnected: %s sockets connected', connections.length);
-      });
+    });
 
-      socket.on('send message', function(data){
+    socket.on('send message', function(data){
         io.sockets.emit('new message',{msg: data, user: socket.username});
-      });
+    });
 
-      socket.on('new user', function(data, callback){
+    socket.on('new user', function(data, callback){
         callback(true);
         socket.username = data;
         users.push(socket.username);
         updateUsernames();
-      });
-
-      function updateUsernames(){
-        io.sockets.emit('get users', users);
-      }
-
-      //socket.on('send message', function(data){
-      //  io.sockets.emit('new message',data);
-      //});
     });
+
+    function updateUsernames(){
+        io.sockets.emit('get users', users);
+    }
+
+    //socket.on('send message', function(data){
+    //  io.sockets.emit('new message',data);
+    //});
+});
+
+
+
+app.use(function(req, res) {
+
+    res.redirect('/');
+
+});
