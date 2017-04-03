@@ -40,7 +40,7 @@ bits = new bitString(),
 
 port = 3000,
 
-postings = require(./src/app/postings),
+//postings = require(./src/app/postings),
 
 homeRouter = express.Router();
 
