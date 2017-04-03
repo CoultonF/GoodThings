@@ -16,6 +16,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
@@ -112,8 +113,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         </div>
 
                     <div class="contact-info">
-                        <div class="name">Coulton</div>
-                        <div class="email">cfras104@mtroyal.ca</div>
+                        <div class="name">{{users.name}}</div>
+                        <div class="email">{{users.email}}</div>
                     </div>
                 </app-header>
 
@@ -182,7 +183,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </iron-pages>
 
 </app-drawer-layout>
-
+<iron-ajax
+  id="getNameEmail"
+  url="/getNameEmail"
+  params='{"type":"all"}'
+  handle-as="json"
+  on-response="handleResponse"></iron-ajax>
 </template>
 
 <script>
@@ -207,6 +213,12 @@ Polymer({
                 this.set('_route.path', '/home');
             }
         });
+    },
+    ready:function(){
+      this.$.getNameEmail.generateRequest();
+    },
+    handleResponse:function(data){
+      this.users = data.detail.response;
     },
     _isDetailPage: function(page) {
         return page === 'detail';

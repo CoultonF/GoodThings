@@ -140,6 +140,18 @@ app.use(session({ secret: 'Good_Things',
         failureFlash : true // allow flash messages
     }));
 
+    app.post('/getNameEmail', function(req, res) {
+
+        if(req.isAuthenticated())
+        {
+          var data = {
+            "name":req.user.local.firstName+" "+req.user.local.lastName,
+            "email":req.user.local.email
+          };
+          res.send(JSON.stringify(data));
+        }
+    });
+
     /*
       TODO:Implement chat
     */
