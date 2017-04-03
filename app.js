@@ -99,7 +99,9 @@ app.use(session({ secret: 'Good_Things',
     });
 
     app.get('/api/listPostings', function (req, res) {
-        res.sendJSON(postings.find());
+        var postingInfo = postings.find();
+        console.log(postingInfo);
+        res.json(postingInfo);
     })
 
     app.get('/profile', isLoggedIn, function(req, res) {
