@@ -218,6 +218,9 @@ $(function(){
 
   socket.on('new message', function(data){
     $chat.append('<div class="well"><strong>'+data.user+': </strong> '+data.msg+'</div>');
+    $chat.stop().animate({
+      scrollTop: $chat[0].scrollHeight
+    }, 800);
   });
 
   $userForm.submit(function(e){
