@@ -110,11 +110,12 @@ app.use(session({ secret: 'Good_Things',
 
         var firstName = req.body.firstName;
         var lastName = req.body.lastName;
+        var biography = req.body.biography;
         console.log(req.body.firstName);
-        var data = {"firstName":firstName,"lastName":lastName};
+        var data = {"firstName":firstName,"lastName":lastName,"biography":biography};
         profile.updateProfile(req.user.local.email, data);
         console.log('EMAIL: '+req.user.local.email);
-        res.send(req.user);
+        res.redirect('/home');
 
     });
 
