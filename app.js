@@ -40,7 +40,7 @@ bits = new bitString(),
 
 port = 3000,
 
-//postings = require(./src/app/postings),
+postings = require('./src/models/postings'),
 
 homeRouter = express.Router();
 
@@ -88,7 +88,6 @@ app.use(session({ secret: 'Good_Things',
         }
     });
 
-
     app.use(flash());
 
     require('./src/passport/passport')(passport);
@@ -99,7 +98,7 @@ app.use(session({ secret: 'Good_Things',
 
     });
 
-    app.get('/listPostings', function (req, res) {
+    app.get('/api/listPostings', function (req, res) {
         res.sendJSON(postings.find());
     })
 
@@ -117,12 +116,11 @@ app.use(session({ secret: 'Good_Things',
 
         var firstName = req.body.firstName;
         var lastName = req.body.lastName;
-        var biography = req.body.biography;
         console.log(req.body.firstName);
-        var data = {"firstName":firstName,"lastName":lastName,"biography":biography};
+        var data = {"firstName":firstName,"lastName":lastName};
         profile.updateProfile(req.user.local.email, data);
         console.log('EMAIL: '+req.user.local.email);
-        res.redirect('/home');
+        res.send(req.user);
 
     });
 
