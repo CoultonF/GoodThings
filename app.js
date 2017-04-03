@@ -40,6 +40,8 @@ bits = new bitString(),
 
 port = 3000,
 
+postings = require(./src/app/postings),
+
 homeRouter = express.Router();
 
 signinRouter = express.Router();
@@ -86,6 +88,7 @@ app.use(session({ secret: 'Good_Things',
         }
     });
 
+
     app.use(flash());
 
     require('./src/passport/passport')(passport);
@@ -95,6 +98,10 @@ app.use(session({ secret: 'Good_Things',
         res.sendFile(__dirname + '/home-page.html');
 
     });
+
+    app.get('/listPostings', function (req, res) {
+        res.sendJSON(postings.find());
+    })
 
     app.get('/profile', isLoggedIn, function(req, res) {
         res.redirect('/home');
@@ -118,7 +125,6 @@ app.use(session({ secret: 'Good_Things',
         res.redirect('/home');
 
     });
-
 
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect : '/profile', // redirect to the secure profile section
@@ -221,9 +227,9 @@ app.use(session({ secret: 'Good_Things',
         console.log('Server started at localhost:' + port);
     });
 */
-newMessages = 0;
-users = [];
-connections = [];
+    newMessages = 0;
+    users = [];
+    connections = [];
     io.sockets.on('connection', function(socket){
       connections.push(socket);
       console.log('Connected: %s sockets connected', connections.length);

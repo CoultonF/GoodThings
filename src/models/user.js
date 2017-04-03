@@ -15,62 +15,6 @@ var userSchema = mongoose.Schema({
         lastName: String,
         biography: String
     },
-    // postings         : {
-    //     title        : String,
-    //     timeCommitment: String,
-    //     description  : String,
-    //     availability : {Sunday:{
-    //
-    //         }, Monday:{
-    //
-    //             Morning: Boolean,
-    //
-    //             Afternoon: Boolean,
-    //
-    //             Evening: Boolean
-    //
-    //         }, Tuesday:{
-    //
-    //             Morning: Boolean,
-    //
-    //             Afternoon: Boolean,
-    //
-    //             Evening: Boolean
-    //
-    //         }, Wednesday:{
-    //
-    //             Morning: Boolean,
-    //
-    //             Afternoon: Boolean,
-    //
-    //             Evening: Boolean
-    //
-    //         }, Thursday:{
-    //
-    //             Morning: Boolean,
-    //
-    //             Afternoon: Boolean,
-    //
-    //             Evening: Boolean
-    //
-    //         }, Friday:{
-    //
-    //             Morning: Boolean,
-    //
-    //             Afternoon: Boolean,
-    //
-    //             Evening: Boolean
-    //
-    //         }, Saturday:{
-    //
-    //             Morning: Boolean,
-    //
-    //             Afternoon: Boolean,
-    //
-    //             Evening: Boolean
-    //
-    //     }},
-    // },
     facebook         : {
         id           : String,
         token        : String,
