@@ -40,7 +40,7 @@ bits = new bitString(),
 
 port = 3000,
 
-postings = require(./src/app/postings),
+//postings = require(./src/app/postings),
 
 homeRouter = express.Router();
 
@@ -58,7 +58,7 @@ businessInfoRouter = express.Router();
 
 app.use(express.static(__dirname + '/public'));
 
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(bodyParser.json());
 
@@ -118,8 +118,10 @@ app.use(session({ secret: 'Good_Things',
         var firstName = req.body.firstName;
         var lastName = req.body.lastName;
         var biography = req.body.biography;
+        var interests = req.body.interests;
+        console.log(req.body.interests);
         console.log(req.body.firstName);
-        var data = {"firstName":firstName,"lastName":lastName,"biography":biography};
+        var data = {"firstName":firstName,"lastName":lastName,"biography":biography,"interests":interests};
         profile.updateProfile(req.user.local.email, data);
         console.log('EMAIL: '+req.user.local.email);
         res.redirect('/home');
