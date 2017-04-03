@@ -125,6 +125,7 @@ app.post('/editProfile', isLoggedIn, function(req, res) {
     var lastName = req.body.lastName;
     var biography = req.body.biography;
     var interests = req.body.interests;
+    console.log(req.body.profilePhoto);
     console.log(req.body.interests);
     console.log(req.body.firstName);
     var data = {"firstName":firstName,"lastName":lastName,"biography":biography,"interests":interests};
@@ -148,7 +149,7 @@ app.post('/login', passport.authenticate('local-login', {
 
 //profileInfo is undefined when it is defined as per the mongodb
 app.post('/getNameEmail', function(req, res) {
-    
+
     if(req.isAuthenticated())
     {
         var data;
