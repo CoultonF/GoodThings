@@ -148,19 +148,20 @@ app.post('/login', passport.authenticate('local-login', {
 
 //profileInfo is undefined when it is defined as per the mongodb
 app.post('/getNameEmail', function(req, res) {
-
+    
     if(req.isAuthenticated())
     {
-        if(req.user.profileInfo == null)
+        var data;
+        if(req.user.profileInfo.firstName === null)
         {
-            var data ={
+            data ={
                 "name":"Unknown",
                 "email":req.user.local.email
             };
         }
         else
         {
-            var data = {
+            data = {
                 "name":req.user.profileInfo.firstName+" "+req.user.profileInfo.lastName,
                 "email":req.user.local.email
             };
