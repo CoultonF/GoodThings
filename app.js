@@ -99,9 +99,15 @@ app.use(session({ secret: 'Good_Things',
     });
 
     app.get('/api/listPostings', function (req, res) {
-      console.log("Request data:");
-      console.log(postings.find());
-    })
+      // find each person with a last name matching 'Ghost'
+      var query = postings.find();
+
+      // execute the query at a later time
+      query.exec(function (err, posting) {
+        if (err) return handleError(err);
+        res.json(posting) // Space Ghost is a talk show host.
+      })
+    });
 
     app.get('/profile', isLoggedIn, function(req, res) {
         res.redirect('/home');
