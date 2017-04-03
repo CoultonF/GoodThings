@@ -12,7 +12,8 @@ var userSchema = mongoose.Schema({
     },
     profileInfo  : {
         firstName: String,
-        lastName: String
+        lastName: String,
+        biography: String
     },
     facebook         : {
         id           : String,

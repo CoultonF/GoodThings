@@ -6,7 +6,7 @@ module.exports = {
 
     updateProfile : function(email, userData){
         console.log(userData);
-        User.update({"local.email":"a@a.ca"}, {$set:{profileInfo:userData}}, {}, callback);
+        User.update({"local.email":email}, {$set:{profileInfo:userData}}, {}, callback);
         function callback (err, numAffected) {
             if (err)
                 console.log(err);
