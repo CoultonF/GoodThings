@@ -11,8 +11,9 @@ var userSchema = mongoose.Schema({
         password     : String,
         profileInfo  : {
 
-            firstName: String
-            
+            firstName: String,
+            lastName : String
+
         }
     },
     // postings         : {

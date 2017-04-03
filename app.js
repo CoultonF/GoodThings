@@ -77,7 +77,7 @@ app.use(session({ secret: 'Good_Things',
 
     app.use(passport.session()); // persistent login sessions
 
-    mongoose.connect(url, function(error) {
+    mongoose.connect(url, function(error, db) {
         if(error){
             console.log(error);
         }
@@ -106,7 +106,17 @@ app.use(session({ secret: 'Good_Things',
         req.logout();
         res.redirect('/');
     });
+    app.post('/editProfile', isLoggedIn, function(req, res) {
 
+        var firstName = req.body.firstName;
+        var lastName = req.body.lastName;
+        console.log(req.body.firstName);
+        var data = {"firstName":firstName,"lastName":lastName};
+        profile.updateProfile(req.user.local.email, data);
+        console.log('EMAIL: '+req.user.local.email);
+        res.send(req.user);
+
+    });
 
 
     app.post('/signup', passport.authenticate('local-signup', {

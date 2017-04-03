@@ -1,0 +1,218 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="../bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+
+<!--<link rel="import" href="../bower_components/chat-window/chat-window.html">-->
+
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/google-map/google-map.html">
+<link rel="import" href="../bower_components/google-map/google-map-marker.html">
+<link rel="import" href="../bower_components/google-map/google-map-poly.html">
+<link rel="import" href="../bower_components/google-map/google-map-directions.html">
+
+<link rel="import" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<dom-module id="edit-profile">
+    <template>
+    <style>
+    :host {
+        display: block;
+        background-attachment: fixed;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+    }
+    #header {
+        color: #ff9163;
+        background-color: #ff9163;
+        --app-header-background-rear-layer: {
+            background-color: #ff9163;
+        };
+    }
+    #chat{
+        height:50px;
+    }
+    paper-icon-button {
+        color: white;
+        --paper-icon-button-ink-color: white;
+    }
+    .card-container {
+        position: relative;
+        width: 720px;
+        margin: 50px auto 40px;
+    }
+    paper-fab {
+        position: absolute;
+        top: -28px;
+        right: 40px;
+        --paper-fab-background: #EF5458;
+        --paper-fab-keyboard-focus-background: #DF4448;
+    }
+    paper-card {
+        padding: 16px 0 16px 10px;
+        width: 100%;
+        sizing: border-box;
+    }
+    paper-card p {
+        margin: 12px 0;
+        color: #999;
+    }
+    .apply-button{
+        color: white;
+        background-color: #ff9163;
+        --paper-button-ink-color: #fff;
+        --paper-button-color: #ff9163;
+        width: 100%;
+    }
+    h4 {
+        margin: 60px 0 12px;
+    }
+    .ingredient-item {
+        margin: 20px 0;
+        @apply(--layout-horizontal);
+    }
+    .ingredient-amount {
+        margin-left: -80px;
+        width: 60px;
+        padding-right: 20px;
+        color: rgb(33, 169, 143);
+        text-align: right;
+    }
+    .ingredient-name {
+        @apply(--layout-flex);
+    }
+    @media (max-width: 720px) {
+        .card-container {
+            width: 100%;
+            margin: 25px 0 0;
+        }
+    }
+    form{
+        max-width: 500px;
+        margin: auto;
+        padding: 2em;
+
+    }
+    </style>
+
+    <!-- main panel -->
+    <app-header-layout>
+
+        <app-header id="header" effects="waterfall fade-background" reveals>
+
+            <!-- top toolbar -->
+            <app-toolbar>
+                <!-- back button -->
+                <a href="/home" tabindex="-1">
+                    <paper-icon-button icon="app:arrow-back"></paper-icon-button>
+                </a>
+
+                <div main-title></div>
+
+
+            </app-toolbar>
+
+        </app-header>
+    </app-header-layout>
+    <form action="/editProfile" method="post">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input name="firstName" type="text" class="form-control" id="firstName" placeholder="First Name">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input name="lastName" type="text" class="form-control" id="lastName" placeholder="Last Name">
+        </div>
+        <div class="form-group">
+            <label for="exampleSelect1">Example select</label>
+            <select class="form-control" id="exampleSelect1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleSelect2">Example multiple select</label>
+            <select multiple class="form-control" id="exampleSelect2">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="biography">Biography</label>
+            <textarea class="form-control" id="biography" rows="3" placeholder="Say who you are"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="profilePhoto">Upload profile photo</label>
+            <input type="file" class="form-control-file" id="profilePhoto" aria-describedby="fileHelp">
+            <small id="fileHelp" class="form-text text-muted">Images must be under 20MB and in jpeg or png file format.</small>
+        </div>
+        <!-- <fieldset class="form-group">
+        <legend>Interests</legend>
+        <div class="form-check">
+        <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+        Option one is this and that&mdash;be sure to include why it's great
+    </label>
+</div>
+<div class="form-check">
+<label class="form-check-label">
+<input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+Option two can be something else and selecting it will deselect option one
+</label>
+</div>
+<div class="form-check disabled">
+<label class="form-check-label">
+<input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+Option three is disabled
+</label>
+</div>
+</fieldset>
+<div class="form-check">
+<label class="form-check-label">
+<input type="checkbox" class="form-check-input">
+Check me out
+</label>
+</div> -->
+<button type="submit" class="btn btn-success btn-block">Save Changes</button>
+</form>
+
+<form action="/deleteAccount" method="post">
+<button class="btn btn-danger btn-block">Delete Account</button>
+
+</form>
+
+</template>
+
+<script>
+Polymer({
+    is: 'edit-profile',
+    properties: {
+        recipes: Object,
+        _route: Object,
+        _subRoute: Object,
+        _pageData: Object,
+        _idData: Object
+    }
+});
+</script>
+
+</dom-module>

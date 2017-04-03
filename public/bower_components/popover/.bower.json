@@ -1,0 +1,14 @@
+{
+  "name": "popover",
+  "homepage": "https://github.com/FoundOPS/popover",
+  "_release": "7086e62479",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "7086e624794ed185a2c0db60f60679d697864c2b"
+  },
+  "_source": "https://github.com/FoundOPS/popover.git",
+  "_target": "*",
+  "_originalSource": "popover",
+  "_direct": true
+}
