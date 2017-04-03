@@ -151,7 +151,7 @@ app.use(session({ secret: 'Good_Things',
 
         if(req.isAuthenticated())
         {
-          if(req.user.profileInfo == null)
+          if(req.user.profileInfo.firstName == null)
           {
             var data ={
               "name":"Unknown",
