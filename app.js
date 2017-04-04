@@ -32,6 +32,10 @@ session = require('express-session'),
 
 flash = require('connect-flash'),
 
+path = require('path'),
+
+formidable = require('formidable'),
+
 morgan = require('morgan'),
 
 profile = require('./src/app/profile'),
@@ -99,13 +103,13 @@ homeRouter.route('/').get(function(req, res){
 });
 
 app.get('/api/listPostings', function (req, res) {
-    // find each person with a last name matching 'Ghost'
+    // find all postings
     var query = postings.find();
 
     // execute the query at a later time
     query.exec(function (err, posting) {
         if (err) return handleError(err);
-        res.json(posting); // Space Ghost is a talk show host.
+        res.json(posting);
     });
 });
 
@@ -260,6 +264,39 @@ else
 console.log('Server started at localhost:' + port);
 });
 */
+
+app.post('/upload', function(req, res){
+
+  // create an incoming form object
+  var form = new formidable.IncomingForm();
+
+  // specify that we want to allow the user to upload multiple files in a single request
+  form.multiples = true;
+
+  // store all uploads in the /uploads directory
+  form.uploadDir = path.join(__dirname, '/uploads');
+
+  // every time a file has been uploaded successfully,
+  // rename it to it's orignal name
+  form.on('file', function(field, file) {
+    fs.rename(file.path, path.join(form.uploadDir, file.name));
+  });
+
+  // log any errors that occur
+  form.on('error', function(err) {
+    console.log('An error has occured: \n' + err);
+  });
+
+  // once all the files have been uploaded, send a response to the client
+  form.on('end', function() {
+    res.end('success');
+  });
+
+  // parse the incoming request containing the form data
+  form.parse(req);
+
+});
+
 newMessages = 0;
 users = [];
 connections = [];
