@@ -192,7 +192,7 @@
             <label>Enter Message</label>
             <textarea class="form-control" id="message"></textarea>
             <br />
-            <input type="submit" class="btn btn-primary" value="Send Message" />
+            <input id="sanitize" type="submit" class="btn btn-primary" value="Send Message" />
         </form>
       </div>
     </div>
@@ -217,7 +217,7 @@ $(function(){
   });
 
   socket.on('new message', function(data){
-    $chat.append('<div class="well"><strong>'+data.user+': </strong> '+data.msg+'</div>');
+    $chat.append('<div class="well"><strong>'+$.sanitize(data.user)+': </strong> '+$.sanitize(data.msg)+'</div>');
     $chat.stop().animate({
       scrollTop: $chat[0].scrollHeight
     }, 800);
@@ -241,7 +241,15 @@ $(function(){
     }
     $users.html(html);
   });
-});
+
+  	$.sanitize = function(input) {
+  		var output = input.replace(/<script[^>]*?>.*?<\/script>/gi, '').
+  					 replace(/<[\/\!]*?[^<>]*?>/gi, '').
+  					 replace(/<style[^>]*?>.*?<\/style>/gi, '').
+  					 replace(/<![\s\S]*?--[ \t\n\r]*>/gi, '');
+  	    return output;
+  	};
+ });
 </script>
 
 </template>
