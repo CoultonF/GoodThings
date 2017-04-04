@@ -1,9 +1,9 @@
-// app/models/user.js
+// app/models/posting.js
 // load the things we need
 var mongoose = require('mongoose');
 
-// define the schema for our user model
-var userSchema = mongoose.Schema({
+// define the schema for our posting model
+var postingSchema = mongoose.Schema({
   postings         : {
       title        : String,
       timeCommitment: String,
@@ -68,4 +68,4 @@ var userSchema = mongoose.Schema({
     }}
 }
 });
-module.exports = mongoose.model('Postings', userSchema);
+module.exports = mongoose.model('Postings', postingSchema);
