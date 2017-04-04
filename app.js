@@ -131,7 +131,7 @@ app.post('/editProfile', isLoggedIn, function(req, res) {
     var data = {"firstName":firstName,"lastName":lastName,"biography":biography,"interests":interests};
     profile.updateProfile(req.user.local.email, data);
     console.log('EMAIL: '+req.user.local.email);
-    res.send(req.user);
+    res.redirect("/");
 
 });
 
@@ -148,8 +148,21 @@ app.post('/login', passport.authenticate('local-login', {
 }));
 
 //profileInfo is undefined when it is defined as per the mongodb
-app.post('/getNameEmail', function(req, res) {
+app.post('/checkData', function(req, res) {
+    if(req.isAuthenticated())
+    {
+        var data ={
+                "firstName":req.user.profileInfo.firstName,
+                "lastName":req.user.profileInfo.lastName,
+                "biography":req.user.profileInfo.biography,
+                "interests":req.user.profileInfo.interests
+              };
+        console.log(data);
+        res.send(JSON.stringify(data));
+    }
+});
 
+app.post('/getNameEmail', function(req, res) {
     if(req.isAuthenticated())
     {
         var data;

@@ -130,15 +130,15 @@
     <form action="/editProfile" method="post">
         <div class="form-group">
             <label for="firstName">First Name</label>
-            <input name="firstName" type="text" class="form-control" id="firstName" placeholder="First Name" value={{details.firstName}}>
+            <input name="firstName" type="text" class="form-control" id="firstName" placeholder="First Name">
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input name="lastName" type="text" class="form-control" id="lastName" placeholder="Last Name" value={{details.lastName}}>
+            <input name="lastName" type="text" class="form-control" id="lastName" placeholder="Last Name">
         </div>
         <div class="form-group">
             <label for="biography">Biography</label>
-            <textarea class="form-control" id="biography" name="biography" rows="3" placeholder="Say who you are" value={{details.biography}}></textarea>
+            <textarea class="form-control" id="biography" name="biography" rows="3" placeholder="Say who you are"></textarea>
         </div>
         <div class="form-group">
             <label for="profilePhoto">Upload profile photo</label>
@@ -147,43 +147,43 @@
         </div>
         <div class="form-check">
         <label class="form-check-label">
-          <input type="checkbox" name="interests[]" value="Education and Literacy" class="form-check-input">Education and Literacy
+          <input type="checkbox" name="interests[]" id="Education and Literacy" value="Education and Literacy" class="form-check-input">Education and Literacy
         </label></br>
         <label class="form-check-label">
-          <input type="checkbox" name="interests[]" value="Environment and conservation" class="form-check-input">Environment and conservation
+          <input type="checkbox" name="interests[]" id="Environment and Conservation" value="Environment and Conservation" class="form-check-input">Environment and conservation
         </label></br>
         <label class="form-check-label">
-          <input type="checkbox" name="interests[]" value="Faith" class="form-check-input">Faith
+          <input type="checkbox" name="interests[]" id="Faith" value="Faith" class="form-check-input">Faith
         </label></br>
         <label class="form-check-label">
-          <input type="checkbox" name="interests[]" value="Hospitals" class="form-check-input">Hospitals
+          <input type="checkbox" name="interests[]" id="Hospitals" value="Hospitals" class="form-check-input">Hospitals
         </label></br>
         <label class="form-check-label">
-          <input type="checkbox" name="interests[]" value="Human Rights and Justice" class="form-check-input">Human Rights and Justice
+          <input type="checkbox" name="interests[]" id="Human Rights and Justice" value="Human Rights and Justice" class="form-check-input">Human Rights and Justice
         </label></br>
         <label class="form-check-label">
-          <input type="checkbox" name="interests[]" value="Hunger and Homelessness" class="form-check-input">Hunger and Homelessness
+          <input type="checkbox" name="interests[]" id="Hunger and Homelessness" value="Hunger and Homelessness" class="form-check-input">Hunger and Homelessness
         </label></br>
         <label class="form-check-label">
-          <input type="checkbox" name="interests[]" value="International Development" class="form-check-input">International Development
+          <input type="checkbox" name="interests[]" id="International Development" value="International Development" class="form-check-input">International Development
         </label></br>
         <label class="form-check-label">
-          <input type="checkbox" name="interests[]" value="Museums and Heritage" class="form-check-input">Museums and Heritage
+          <input type="checkbox" name="interests[]" id="Museums and Heritage" value="Museums and Heritage" class="form-check-input">Museums and Heritage
         </label></br>
         <label class="form-check-label">
-          <input type="checkbox" name="interests[]" value="New Citizens and Immigrants" class="form-check-input">New Citizens and Immigrants
+          <input type="checkbox" name="interests[]" id="New Citizens and Immigrants" value="New Citizens and Immigrants" class="form-check-input">New Citizens and Immigrants
         </label></br>
         <label class="form-check-label">
-          <input type="checkbox" name="interests[]" value="Non-Profit Sector Development" class="form-check-input">Non-Profit Sector Development
+          <input type="checkbox" name="interests[]" id="Non-Profit Sector Development" value="Non-Profit Sector Development" class="form-check-input">Non-Profit Sector Development
         </label></br>
         <label class="form-check-label">
-          <input type="checkbox" name="interests[]" value="Seniors and Elders" class="form-check-input">Seniors and Elders
+          <input type="checkbox" name="interests[]" id="Seniors and Elders" value="Seniors and Elders" class="form-check-input">Seniors and Elders
         </label></br>
         <label class="form-check-label">
-          <input type="checkbox" name="interests[]" value="Special Events and Festivals" class="form-check-input">Special Events and Festivals
+          <input type="checkbox" name="interests[]" id="Special Events and Festivals" value="Special Events and Festivals" class="form-check-input">Special Events and Festivals
         </label></br>
         <label class="form-check-label">
-          <input type="checkbox" name="interests[]" value="Sports and Recreation" class="form-check-input">Sports and Recreation
+          <input type="checkbox" name="interests[]" id="Sports and Recreation" value="Sports and Recreation" class="form-check-input">Sports and Recreation
         </label></br>
 
         </div>
@@ -218,7 +218,27 @@ Polymer({
       this.$.checkData.generateRequest();
     },
     handleResponse:function(data){
-      this.details = data.detail.response;
+      if(data.detail.response.firstName != "undefined")
+      {
+        document.getElementById("firstName").value = data.detail.response.firstName;
+      }
+      if(data.detail.response.lastName != "undefined")
+      {
+        document.getElementById("lastName").value = data.detail.response.lastName;
+      }
+      if(data.detail.response.biography != "undefined")
+      {
+        document.getElementById("biography").value = data.detail.response.biography;
+      }
+      if(data.detail.response.interests != "undefined")
+      {
+        var interests = data.detail.response.interests;
+        for(var i = 0; i < interests.length; i++)
+        {
+          document.getElementById(interests[i]).checked = true;
+        }
+      }
+
     },
 });
 </script>
