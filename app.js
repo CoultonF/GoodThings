@@ -170,7 +170,7 @@ app.post('/getNameEmail', function(req, res) {
     if(req.isAuthenticated())
     {
         var data;
-        if(req.user.profileInfo.firstName === null)
+        if(req.user.profileInfo.firstName === undefined)
         {
             data ={
                 "name":"Unknown",
