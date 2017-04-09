@@ -220,19 +220,19 @@ Polymer({
       this.$.checkData.generateRequest();
     },
     handleResponse:function(data){
-      if(data.detail.response.firstName != "undefined")
+      if(data.detail.response.firstName !== undefined)
       {
         document.getElementById("firstName").value = data.detail.response.firstName;
       }
-      if(data.detail.response.lastName != "undefined")
+      if(data.detail.response.lastName !== undefined)
       {
         document.getElementById("lastName").value = data.detail.response.lastName;
       }
-      if(data.detail.response.biography != "undefined")
+      if(data.detail.response.biography !== undefined)
       {
         document.getElementById("biography").value = data.detail.response.biography;
       }
-      if(data.detail.response.interests != "undefined")
+      if(data.detail.response.interests !== undefined)
       {
         var interests = data.detail.response.interests;
         for(var i = 0; i < interests.length; i++)
