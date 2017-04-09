@@ -124,11 +124,15 @@ app.get('/logout', isLoggedIn, function(req, res) {
     res.redirect('/');
 });
 app.post('/editProfile', isLoggedIn, function(req, res) {
-
+    var profilePhoto = req.body.profilePhoto;
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;
     var biography = req.body.biography;
     var interests = req.body.interests;
+
+
+
+
     console.log(req.body.profilePhoto);
     console.log(req.body.interests);
     console.log(req.body.firstName);
