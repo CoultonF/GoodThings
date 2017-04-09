@@ -55,6 +55,7 @@
     :host {
         --app-grid-columns: 2;
     }
+
     #stepper {
         --paper-stepper-vertical-responsive-width: 650px;
         --paper-stepper-horizontal-opened-height: 650px;
@@ -162,16 +163,60 @@
 </paper-step>
 
 </paper-step>
-<paper-step label="Step 3: Now" editable></paper-step>
+<paper-step label="Step 3: Now" editable>
 
+<h4>Here's some opprotunities we've matched for you: </h4>
+
+<ul class="app-grid">
+    <li class="item" on-tap="register"><paper-card>
+        <div class="card-content title-category">
+            <strong>Meals on Wheels</strong>
+        <p>Safely deliver meals to clients in North York, between Bathurst and Victoria Park, and Steeles and Sheppard/HWY 401. Provide a regular check on client's well being. No vehicle is required. Minimum commitment of 12 shifts.</p>
+        </div>
+    </paper-card>
+    </li>
+    <li class="item" on-tap="register" ><paper-card>
+        <div class="card-content title-category">
+            <strong>Small Business Mentors</strong>
+        <p>Abundant in color, and healthy, delicious goodness, cooking with these South American purple potatoes is a treat. Boil, mash, bake, or roast them. For taste cook with chicken stock, and a dash of extra virgin olive oil. <br><br></p>
+        </div>
+    </paper-card></li>
+    <li class="item" on-tap="register"><paper-card>
+        <div class="card-content title-category">
+            <strong>Toronto Taste Entertainment Committee Member</strong>
+        <p>Robust cuts of portuguese sausage add layers of flavour. Bake or fry until sausages are slightly browned and with a crispy skin. Serve warm and with cuts of pineapple for a delightful mix of sweet and savory flavour. This is the perfect dish after a swim in the sea.</p>
+        </div>
+    </paper-card>
+    </li>
+      <li class="item" on-tap="register"><paper-card>
+          <div class="card-content title-category">
+              <strong>Fundraising and Awareness Ambassador</strong>
+          <p>Crisp flavours and a bit of spice make this roasted chicken dish an easy go to when cooking for large groups. Top with Baja sauce for an extra kick of spice<br><br><br></p>
+          </div>
+      </paper-card>
+    </li>
+</ul>
+</paper-step>
 </paper-stepper>
-
+<paper-dialog transition="core-transition-center" id="dialog">
+  <h2>Sign In or Register now!</h2>
+<paper-dialog-scrollable>
+  To view this posting, please sign in with your GoodThings account or create an account now!
+</paper-dialog-scrollable>
+<div class="buttons">
+  <paper-button dialog-confirm autofocus on-tap="signinRouter">Sign In</paper-button>
+  <paper-button dialog-confirm autofocus on-tap="signupRouter">Register</paper-button>
+</div>
+</paper-dialog>
 </template>
 
 <script>
 Polymer({
     is: 'goodthings-stepper',
-    continue: function(){ this.$.stepper.continue()}
+    continue: function(){ this.$.stepper.continue()},
+    register: function(){this.$.dialog.toggle()},
+    signinRouter: function(){window.location="/signin"},
+    signupRouter: function(){window.location="/signup"}
 });
 </script>
 
