@@ -124,11 +124,15 @@ app.get('/logout', isLoggedIn, function(req, res) {
     res.redirect('/');
 });
 app.post('/editProfile', isLoggedIn, function(req, res) {
-
+    var profilePhoto = req.body.profilePhoto;
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;
     var biography = req.body.biography;
     var interests = req.body.interests;
+
+
+
+
     console.log(req.body.profilePhoto);
     console.log(req.body.interests);
     console.log(req.body.firstName);
@@ -150,6 +154,21 @@ app.post('/login', passport.authenticate('local-login', {
     failureRedirect : '/signin', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
 }));
+
+// =====================================
+// GOOGLE ROUTES =======================
+// =====================================
+// send to google to do the authentication
+// profile gets us their basic information including their name
+// email gets their emails
+app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
+// the callback after google has authenticated the user
+app.get('/auth/google/callback',
+        passport.authenticate('google', {
+                successRedirect : '/profile',
+                failureRedirect : '/signin'
+        }));
 
 //profileInfo is undefined when it is defined as per the mongodb
 app.post('/checkData', function(req, res) {
