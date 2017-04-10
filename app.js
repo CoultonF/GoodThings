@@ -180,6 +180,7 @@ app.post('/checkData', function(req, res) {
                 "biography":req.user.profileInfo.biography,
                 "interests":req.user.profileInfo.interests
               };
+        console.log(req.user.google.name);
         console.log(data);
         res.send(JSON.stringify(data));
     }
@@ -203,6 +204,7 @@ app.post('/getNameEmail', function(req, res) {
                 "email":req.user.local.email
             };
         }
+        console.log(req.user.google.name);
         res.send(JSON.stringify(data));
     }
 });
