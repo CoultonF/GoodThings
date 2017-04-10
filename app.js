@@ -119,7 +119,9 @@ app.get('/profile', isLoggedIn, function(req, res) {
 app.get('/home', isLoggedIn, function(req, res) {
     res.sendFile(__dirname + '/user-page.html');
 });
+//Cannot logout using a Google account - the user will have to log out via google.ca to log out of the app
 app.get('/logout', isLoggedIn, function(req, res) {
+    console.log("tried logging out");
     req.logout();
     res.redirect('/');
 });
@@ -129,9 +131,6 @@ app.post('/editProfile', isLoggedIn, function(req, res) {
     var lastName = req.body.lastName;
     var biography = req.body.biography;
     var interests = req.body.interests;
-
-
-
 
     console.log(req.body.profilePhoto);
     console.log(req.body.interests);
