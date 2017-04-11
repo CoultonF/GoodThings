@@ -1,0 +1,1 @@
+{"_id":{"$oid":"58db579782c6bb0720d86d26"},"first_name":"Tyler","last_name":"Dickson","bio":"I'm in high school and looking to expand my resume!","availability":[{"monday":"Free","tuesday":"Busy","wednesday":"Busy","thursday":"Free","friday":"Free","saturday":"Free","sunday":"Free"}],"skills":[{"$oid":"58db55c582c6bb0720d86cf8"},{"$oid":"58db55c582c6bb0720d86d17"}]}

@@ -1,0 +1,13 @@
+{"_id":{"$oid":"58db55b082c6bb0720d86ce7"},"name":"Education and Literacy","val":1.0}
+{"_id":{"$oid":"58db55b082c6bb0720d86ce8"},"name":"Environment and Conservation","val":2.0}
+{"_id":{"$oid":"58db55b082c6bb0720d86ce9"},"name":"Faith","val":3.0}
+{"_id":{"$oid":"58db55b082c6bb0720d86cea"},"name":"Hospitals","val":4.0}
+{"_id":{"$oid":"58db55b082c6bb0720d86ceb"},"name":"Human Rights and Justice","val":5.0}
+{"_id":{"$oid":"58db55b082c6bb0720d86cec"},"name":"Hunger and Homelessness","val":6.0}
+{"_id":{"$oid":"58db55b082c6bb0720d86ced"},"name":"International Development","val":6.0}
+{"_id":{"$oid":"58db55b082c6bb0720d86cee"},"name":"Museums and Heritage","val":7.0}
+{"_id":{"$oid":"58db55b082c6bb0720d86cef"},"name":"New Citizens and Immigrants","val":8.0}
+{"_id":{"$oid":"58db55b082c6bb0720d86cf0"},"name":"Non-Profit Sector Development","val":9.0}
+{"_id":{"$oid":"58db55b082c6bb0720d86cf1"},"name":"Seniors and Elders","val":10.0}
+{"_id":{"$oid":"58db55b082c6bb0720d86cf2"},"name":"Special Evens and Festivals","val":11.0}
+{"_id":{"$oid":"58db55b082c6bb0720d86cf3"},"name":"Sports and Recreation","val":12.0}

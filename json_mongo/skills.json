@@ -1,0 +1,36 @@
+{"_id":{"$oid":"58db55c582c6bb0720d86cf4"},"name":"Beauty and Fashion","val":1.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86cf5"},"name":"Bingos / Casinos","val":2.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86cf6"},"name":"Board Member","val":3.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86cf7"},"name":"Camp and Outdoor Adventure","val":4.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86cf8"},"name":"Child Care","val":5.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86cf9"},"name":"Coach Referee","val":6.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86cfa"},"name":"Committee Member","val":7.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86cfb"},"name":"Companion","val":8.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86cfc"},"name":"Construction and Trades","val":9.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86cfd"},"name":"Consultant Advisor","val":10.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86cfe"},"name":"Copy Editor / Writing / Proof Reading","val":11.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86cff"},"name":"Data Entry","val":12.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d00"},"name":"Driving / Transportation","val":13.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d01"},"name":"Entertainment","val":14.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d02"},"name":"Employment Skills","val":15.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d03"},"name":"Event Assistance and Planning","val":16.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d04"},"name":"Financing / Accounting / Audit","val":17.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d05"},"name":"Food and Beverage Prep / Kitchen","val":18.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d06"},"name":"General Labour","val":19.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d07"},"name":"Grant / Proposal Writing","val":20.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d08"},"name":"Graphic Design","val":21.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d09"},"name":"Human Resources","val":22.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d0a"},"name":"Leadership Development","val":23.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d0b"},"name":"Marketing","val":24.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d0c"},"name":"Medical","val":25.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d0d"},"name":"Mentoring","val":26.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d0e"},"name":"Peer Support","val":27.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d0f"},"name":"Photographer / Videographer","val":28.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d10"},"name":"Project Management","val":29.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d11"},"name":"Public Relations","val":30.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d12"},"name":"Reception / Administration","val":31.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d13"},"name":"Research / Analytical","val":32.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d14"},"name":"Theatre","val":33.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d15"},"name":"Translation / Interpretation","val":34.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d16"},"name":"Volunteer Management","val":35.0}
+{"_id":{"$oid":"58db55c582c6bb0720d86d17"},"name":"Web Design","val":36.0}
