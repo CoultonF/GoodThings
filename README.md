@@ -1,5 +1,5 @@
 # GoodThings
-To view the project go to: https://goodthings.coultonfraser.com/
+To view the project go to: ~~https://goodthings.coultonfraser.com/~~
 
 # Instantiating MongoDB on Local Device
 Make sure you have MongoDB installed locally on your device
